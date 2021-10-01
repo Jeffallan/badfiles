@@ -1,3 +1,5 @@
+import pathlib
+
 import pytest
 from badfiles.badfiles import Badfile
 
@@ -8,27 +10,32 @@ from badfiles.badfiles import Badfile
 
 b = Badfile()
 
-# def test_number_violations():
-#    """This test validates the correct number of errors are found"""
-#    assert len(T) == 6
-#
+
+def test_number_violations():
+    """This test validates the correct number of errors are found"""
+    hits = []  # 6
+    for d in pathlib.Path("test").iterdir():
+        if d.is_file():
+            if b.is_badfile(d).classification == "unsafe":
+                hits.append(b.is_badfile(d))
+    print("\n", *hits, sep="\n")
+    assert len(hits) == 7
 
 
 def test_find_zipslip():
-    # assert str(T["zipslip.zip"][0]) == "zip_slip"
-    assert b.is_badfile("test/zipslip.zip")
+    assert b.is_badfile("test/zipslip.zip").classification == "unsafe"
 
 
 def test_find_gid():
-    assert b.is_badfile("test/gid.zip")
+    assert b.is_badfile("test/gid.zip").classification == "unsafe"
 
 
 def test_symlink():
-    assert b.is_badfile("test/sym1.zip")
+    assert b.is_badfile("test/sym1.zip").classification == "unsafe"
 
 
 def test_uid():
-    assert b.is_badfile("test/uid.zip")
+    assert b.is_badfile("test/uid.zip").classification == "unsafe"
 
 
 @pytest.mark.skip(reason="Not Implemented")
@@ -52,11 +59,11 @@ def test_uid_gid_sticky_with_bit():
 
 
 def test_flat_bomb():
-    assert b.is_badfile("test/flat-bomb.zip")
+    assert b.is_badfile("test/flat-bomb.zip").classification == "unsafe"
 
 
 def test_nested_bomb():
-    assert b.is_badfile("test/nested-bomb.zip")
+    assert b.is_badfile("test/nested-bomb.zip").classification == "unsafe"
 
 
 def test_mime_confusion():
