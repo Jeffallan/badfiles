@@ -11,3 +11,7 @@ clean:
 
 run_test:
 	pytest -v .
+
+prepare:
+	tox
+	pre-commit run --all-files
