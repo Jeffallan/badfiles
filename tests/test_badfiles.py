@@ -1,29 +1,34 @@
 import pytest
+from badfiles.badfiles import Badfile
 
-from .driver import main
+# from .driver import main
 
-T = main()
+# T = main()
 
 
-def test_number_violations():
-    """This test validates the correct number of errors are found"""
-    assert len(T) == 6
+b = Badfile()
+
+# def test_number_violations():
+#    """This test validates the correct number of errors are found"""
+#    assert len(T) == 6
+#
 
 
 def test_find_zipslip():
-    assert str(T["zipslip.zip"][0]) == "zip_slip"
+    # assert str(T["zipslip.zip"][0]) == "zip_slip"
+    assert b.is_badfile("test/zipslip.zip")
 
 
 def test_find_gid():
-    assert str(T["gid.zip"][0]) == "zip_setgid"
+    assert b.is_badfile("test/gid.zip")
 
 
 def test_symlink():
-    assert str(T["sym1.zip"][0]) == "zip_symlink"
+    assert b.is_badfile("test/sym1.zip")
 
 
 def test_uid():
-    assert str(T["uid.zip"][0]) == "zip_setuid"
+    assert b.is_badfile("test/uid.zip")
 
 
 @pytest.mark.skip(reason="Not Implemented")
@@ -47,16 +52,16 @@ def test_uid_gid_sticky_with_bit():
 
 
 def test_flat_bomb():
-    assert str(T["flat-bomb.zip"]) == "flat_zip_bomb"
+    assert b.is_badfile("test/flat-bomb.zip")
 
 
 def test_nested_bomb():
-    assert str(T["nested-bomb.zip"][0]) == "nested_zip_bomb"
+    assert b.is_badfile("test/nested-bomb.zip")
 
 
-def test_false_positives_when_searching_zip_string():
-    """Make sure we only search for the string .zip in .zip files"""
-    assert "not_zip.txt" not in T
+def test_mime_confusion():
+    f = b.is_badfile("test/not_zip.zip")
+    assert f.classification == "unsafe" and f.message == "deceptive extension"
 
 
 @pytest.mark.skip(reason="Not Implemented")
