@@ -34,6 +34,8 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo apt update
+          sudo apt install python3-wxgtk4.0 python3-wxgtk-webview4.0 python3-wxgtk-media4.0​
           python -m pip install --upgrade pip
           pip install poetry tox tox-gh-actions
 
