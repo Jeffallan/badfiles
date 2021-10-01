@@ -13,6 +13,21 @@ rule zip_symlink : Zip
         $is_symlink
 }
 
+rule zip_bad_bits : Zip
+{
+    meta:
+        name = "Zip with bad bits"
+        created = "09/01/21"
+        description = "This zip file contains a sticky, setuid, or setgit bit."
+        version = "1"
+
+    strings:
+        $bad_bits = { 50 4B 01 02 [37] (82|83|84|85|86|87|88|89|8A|8B|8C|8D|8E|8F)}
+
+    condition:
+        $bad_bits
+}
+/*
 rule zip_setuid : Zip
 {
     meta:
@@ -41,6 +56,7 @@ rule zip_setgid : Zip
     condition:
         $is_uid
 }
+*/
 rule zip_slip : Zip
 {
     meta:

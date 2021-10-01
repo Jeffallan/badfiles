@@ -10,7 +10,7 @@ clean:
 	rm -rf test
 
 run_test:
-	pytest -v .
+	pytest -v . # -s for print statements
 
 prepare:
 	tox

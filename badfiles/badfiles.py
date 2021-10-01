@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from enum import Enum
 from os import PathLike
 from typing import IO, Dict, ItemsView, List, Optional, Tuple
-from zipfile import BadZipFile, ZipFile
+from zipfile import BadZipFile, LargeZipFile, ZipFile
 
 import magic
 import yara  # type: ignore
@@ -102,7 +102,10 @@ class Badfile(object):
                 stats.append(1 - (z.compress_size / z.file_size))
             except ZeroDivisionError:
                 return False
-
+            except LargeZipFile:
+                return True  # TODO move LargeZipFile check to another function?
+        if len(stats) == 0:
+            return False
         return sum(stats) / len(stats) > rate
 
 

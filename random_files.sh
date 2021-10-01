@@ -58,6 +58,20 @@ touch uid_gid_sticky.sh
 chmod 7755 uid_gid_sticky.sh
 zip uid_gid_sticky.zip uid_gid_sticky.sh
 
+touch uid_gid.sh
+chmod 6755 uid_gid.sh
+zip uid_gid.zip uid_gid.sh
+
+#zip lowest perms
+touch lowest.sh
+chmod 1500 lowest.sh
+zip lowest_perms.zip lowest.sh
+
+#zip highest perms
+touch highest.sh
+chmod 7777 highest.sh
+zip highest_perms.zip highest.sh
+
 
 #make zip slip
 touch "../../slip"

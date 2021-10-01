@@ -19,7 +19,7 @@ def test_number_violations():
             if b.is_badfile(d).classification == "unsafe":
                 hits.append(b.is_badfile(d))
     print("\n", *hits, sep="\n")
-    assert len(hits) == 7
+    assert len(hits) == 14
 
 
 def test_find_zipslip():
@@ -38,24 +38,20 @@ def test_uid():
     assert b.is_badfile("test/uid.zip").classification == "unsafe"
 
 
-@pytest.mark.skip(reason="Not Implemented")
-def test_uid_sticky_with_bit():
-    pass
+def test_uid_with_sticky_bit():
+    assert b.is_badfile("test/uid_sticky.zip").classification == "unsafe"
 
 
-@pytest.mark.skip(reason="Not Implemented")
-def test_gid_sticky_with_bit():
-    pass
+def test_gid_with_sticky_bit():
+    assert b.is_badfile("test/gid_sticky.zip").classification == "unsafe"
 
 
-@pytest.mark.skip(reason="Not Implemented")
 def test_uid_gid():
-    pass
+    assert b.is_badfile("test/uid_gid.zip").classification == "unsafe"
 
 
-@pytest.mark.skip(reason="Not Implemented")
 def test_uid_gid_sticky_with_bit():
-    pass
+    assert b.is_badfile("test/uid_gid_sticky.zip").classification == "unsafe"
 
 
 def test_flat_bomb():
