@@ -54,17 +54,21 @@ def main():
     #                     help="Path to tarfile rules",
     #                     default=None,
     #                     required=False)
-    # parser.add_argument("--iso_dir",
-    #                     widget="FileChooser",
-    #                     help="The directory to isolate badfiles",
-    #                     default="./test/bad",
-    #                     required=False)
-    # parser.add_argument("--safe_dir",
-    #                     widget="FileChooser",
-    #                     help="The directory to store cleared files",
-    #                     default="./test/safe",
-    #                     required=False)
-    #
+    parser.add_argument(
+        "--iso_dir",
+        widget="FileChooser",
+        help="The directory to isolate badfiles",
+        default="./test/bad",
+        required=False,
+    )
+    parser.add_argument(
+        "--safe_dir",
+        widget="FileChooser",
+        help="The directory to store cleared files",
+        default="./test/safe",
+        required=False,
+    )
+
     args = parser.parse_args()
 
     bad = Badfile(

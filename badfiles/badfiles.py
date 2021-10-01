@@ -29,7 +29,7 @@ BadfileMsg = namedtuple("BadfileMsg", ["classification", "message", "file"])
 @dataclass
 class Badfile(object):
     zip_rules: str = "./rules/zip_rules.yara"  # TODO implement file compression check which is not implemented as a yara rule.
-    # tar_rules: Optional[str] = None
+    tar_rules: Optional[str] = None
     # gzip_rules: Optional[str] = None
     # image_rules: Optional[str] = None
 
@@ -80,11 +80,30 @@ class Badfile(object):
 
     def is_badfile(self, f: PathLike) -> BadfileMsg:
         is_mime_confusion = self._mime_type_confusion(f)
-        if not is_mime_confusion[0]:
+        if is_mime_confusion[0] is False:
             return BadfileMsg(
                 Classification.UNSAFE.value, "deceptive extension", pathlib.Path(f).name
             )
+        if is_mime_confusion[1] == "application/zip":
+            if self._high_compression(f):
+                return BadfileMsg(
+                    Classification.UNSAFE.value, "high compression rate", pathlib.Path(f).name
+                )
         return self._rule_factory(f, is_mime_confusion[1])
+
+    def _high_compression(self, f: PathLike, rate: float = 0.75) -> bool:
+        try:
+            zip_file = ZipFile(f)
+        except BadZipFile:
+            return False
+        stats = []
+        for z in zip_file.infolist():
+            try:
+                stats.append(1 - (z.compress_size / z.file_size))
+            except ZeroDivisionError:
+                return False
+
+        return sum(stats) / len(stats) > rate
 
 
 def isolate_or_clear(
