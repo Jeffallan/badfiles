@@ -51,8 +51,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install tox-gh-actions poetry
-          sudo apt update
-          sudo apt install libgtk-3-dev
 
       - name: pre-publish documentation
         run: |
