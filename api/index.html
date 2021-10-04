@@ -370,6 +370,60 @@
     badfiles
   </a>
   
+    <nav class="md-nav" aria-label="badfiles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#badfiles.badfiles.Badfile" class="md-nav__link">
+    Badfile
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#badfiles.badfiles.BadfileMsg" class="md-nav__link">
+    BadfileMsg
+  </a>
+  
+    <nav class="md-nav" aria-label="BadfileMsg">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#badfiles.badfiles.BadfileMsg.__getnewargs__" class="md-nav__link">
+    __getnewargs__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#badfiles.badfiles.BadfileMsg.__new__" class="md-nav__link">
+    __new__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#badfiles.badfiles.BadfileMsg.__repr__" class="md-nav__link">
+    __repr__()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#badfiles.badfiles.Classification" class="md-nav__link">
+    Classification
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -451,6 +505,60 @@
     badfiles
   </a>
   
+    <nav class="md-nav" aria-label="badfiles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#badfiles.badfiles.Badfile" class="md-nav__link">
+    Badfile
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#badfiles.badfiles.BadfileMsg" class="md-nav__link">
+    BadfileMsg
+  </a>
+  
+    <nav class="md-nav" aria-label="BadfileMsg">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#badfiles.badfiles.BadfileMsg.__getnewargs__" class="md-nav__link">
+    __getnewargs__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#badfiles.badfiles.BadfileMsg.__new__" class="md-nav__link">
+    __new__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#badfiles.badfiles.BadfileMsg.__repr__" class="md-nav__link">
+    __repr__()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#badfiles.badfiles.Classification" class="md-nav__link">
+    Classification
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -515,8 +623,241 @@
 
     <div class="doc doc-contents ">
 
-      <p>Main module.</p>
 
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="badfiles.badfiles.Badfile" class="doc doc-heading">
+        <code>
+Badfile        </code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#badfiles.badfiles.Badfile" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Badfile(zip_rules: str = './rules/zip_rules.yara', tar_rules: Union[str, NoneType] = None)</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="badfiles.badfiles.BadfileMsg" class="doc doc-heading">
+        <code>
+BadfileMsg            (<span data-autorefs-optional-hover=tuple>tuple</span>)
+        </code>
+
+
+
+<a href="#badfiles.badfiles.BadfileMsg" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>BadfileMsg(classification, message, file)</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="badfiles.badfiles.BadfileMsg.__getnewargs__" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">__getnewargs__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+<a href="#badfiles.badfiles.BadfileMsg.__getnewargs__" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Return self as a plain tuple.  Used by copy and pickle.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>badfiles/badfiles.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">__getnewargs__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="s1">&#39;Return self as a plain tuple.  Used by copy and pickle.&#39;</span>
+    <span class="k">return</span> <span class="n">_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="badfiles.badfiles.BadfileMsg.__new__" class="doc doc-heading">
+<code class="highlight language-python"><span class="fm">__new__</span><span class="p">(</span><span class="n">_cls</span><span class="p">,</span> <span class="n">classification</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+      <small class="doc doc-property doc-property-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+<a href="#badfiles.badfiles.BadfileMsg.__new__" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Create new instance of BadfileMsg(classification, message, file)</p>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="badfiles.badfiles.BadfileMsg.__repr__" class="doc doc-heading">
+<code class="highlight language-python"><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+<a href="#badfiles.badfiles.BadfileMsg.__repr__" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Return a nicely formatted representation string</p>
+
+        <details class="quote">
+          <summary>Source code in <code>badfiles/badfiles.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="s1">&#39;Return a nicely formatted representation string&#39;</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="n">repr_fmt</span> <span class="o">%</span> <span class="bp">self</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="badfiles.badfiles.Classification" class="doc doc-heading">
+        <code>
+Classification            (<span data-autorefs-optional-hover=enum.Enum>Enum</span>)
+        </code>
+
+
+
+<a href="#badfiles.badfiles.Classification" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>An enumeration.</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+  </div>
 
     </div>
 
@@ -542,7 +883,6 @@
 
 
   <div class="doc doc-children">
-
 
 
 
