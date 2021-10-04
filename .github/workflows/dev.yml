@@ -46,12 +46,12 @@ jobs:
   publish_dev_build:
     # if test failed, we should not publish
     needs: test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          python-version: 3.9
+          python-version: 3.8
 
       - name: Install dependencies
         run: |
