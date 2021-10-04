@@ -20,8 +20,8 @@ jobs:
     # The type of runner that the job will run on
     strategy:
       matrix:
-        python-versions: [3.6, 3.7, 3.8, 3.9]
-        os: [ubuntu-18.04, macos-latest, windows-latest]
+        python-versions: [3.6, 3.7, 3.8] # 3.9 add gtk+-3.0.pc to ubuntu matrix?
+        os: [ubuntu-20.04, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -34,11 +34,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt update
-          sudo apt install python3-wxgtk4.0 python3-wxgtk-webview4.0 python3-wxgtk-media4.0​
           python -m pip install --upgrade pip
           pip install poetry tox tox-gh-actions
-
       - name: test with tox
         run:
           tox
@@ -49,12 +46,12 @@ jobs:
   publish_dev_build:
     # if test failed, we should not publish
     needs: test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          python-version: 3.9
+          python-version: 3.8
 
       - name: Install dependencies
         run: |
@@ -70,7 +67,7 @@ jobs:
 
       - uses: codecov/codecov-action@v1
         with:
-          fail_ci_if_error: true
+          fail_ci_if_error: false
           files: coverage.xml
 
       - name: Build wheels and source tarball
