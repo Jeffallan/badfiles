@@ -72,6 +72,7 @@ rule tar_device : Tar
         $val
 
 /*
+https://docstore.mik.ua/orelly/unix3/upt/ch38_11.htm
 rule tar_path_naming : Tar
 {
     meta:
