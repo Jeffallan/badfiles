@@ -82,3 +82,6 @@ rm ../../slip
 wget https://raw.githubusercontent.com/damianrusinek/zip-bomb/master/zip-bomb.py
 python3 zip-bomb.py flat 2048 flat-bomb.zip
 python3 zip-bomb.py nested 2048 nested-bomb.zip
+
+
+#make Tarfiles
