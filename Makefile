@@ -7,7 +7,7 @@ build:
 	pytest -v .
 
 clean:
-	rm -rf test
+	sudo rm -rf test
 
 run_test:
 	pytest -v . # -s for print statements

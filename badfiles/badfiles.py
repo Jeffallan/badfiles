@@ -11,7 +11,6 @@ from zipfile import BadZipFile, LargeZipFile, ZipFile
 
 import magic
 import yara  # type: ignore
-from gooey import Gooey, GooeyParser  # type: ignore
 
 
 class Classification(Enum):

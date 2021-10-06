@@ -85,3 +85,7 @@ python3 zip-bomb.py nested 2048 nested-bomb.zip
 
 
 #make Tarfiles
+tar -cvf root_own.tar file001.bin
+sudo chown root root_own.tar
+tar -cvf root_group.tar file001.bin
+sudo chgrp root root_group.tar
