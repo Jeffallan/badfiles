@@ -1,5 +1,7 @@
 #! /bin/bash
 
+ME=`whoami`
+
 mkdir test
 cd test
 # makes random files
@@ -82,3 +84,23 @@ rm ../../slip
 wget https://raw.githubusercontent.com/damianrusinek/zip-bomb/master/zip-bomb.py
 python3 zip-bomb.py flat 2048 flat-bomb.zip
 python3 zip-bomb.py nested 2048 nested-bomb.zip
+
+
+#make Tarfiles
+sudo su --session-command "touch root.txt; \
+                           tar -cvf  root_group.tar root.txt; \
+                           sudo chown $ME root_group.tar; \
+                           tar -cvf root_own.tar root.txt; \
+                           sudo chgrp $ME root_own.tar"
+
+# su $ME
+
+#touch exe_tar.txt
+#chmod 777 exe_tar.txt
+#tar -cvf exe.tar exe_tar.txt
+
+#mkdir tar_dir
+#cp exe_tar.txt ./tar_dir/exe_tar.txt
+#tar -cvf tar_dir
+
+#tar -cvf -P abs.tar file002.bin

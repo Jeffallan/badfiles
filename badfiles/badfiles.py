@@ -11,7 +11,6 @@ from zipfile import BadZipFile, LargeZipFile, ZipFile
 
 import magic
 import yara  # type: ignore
-from gooey import Gooey, GooeyParser  # type: ignore
 
 
 class Classification(Enum):
@@ -28,7 +27,7 @@ BadfileMsg = namedtuple("BadfileMsg", ["classification", "message", "file"])
 
 @dataclass
 class Badfile(object):
-    zip_rules: str = "./rules/zip_rules.yara"  # TODO implement file compression check which is not implemented as a yara rule.
+    zip_rules: str = "./rules/zip_rules.yara"
     tar_rules: Optional[str] = None
     # gzip_rules: Optional[str] = None
     # image_rules: Optional[str] = None
