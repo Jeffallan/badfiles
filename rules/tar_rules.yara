@@ -27,6 +27,7 @@ rule tar_group : Tar
     condition:
         $file and $tar
 }
+/*
 rule tar_bad_bits : Tar
 {
     meta:
@@ -36,11 +37,13 @@ rule tar_bad_bits : Tar
         version = "1"
 
     strings:
-        $val = { ?? [101] (31|32|33|34|35|36|37)}
+        $val = { ?? [109] (31|32|33|34|35|36|37)}
 
     condition:
         $val
 }
+*/
+/*
 rule tar_permissions : Tar
 {
     meta:
@@ -57,6 +60,7 @@ rule tar_permissions : Tar
     condition:
         $owner_perms or $group_perms or $global_perms and not $dir
 }
+*/
 rule tar_device : Tar
 {
     meta:
