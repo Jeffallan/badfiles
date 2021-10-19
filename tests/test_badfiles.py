@@ -77,14 +77,14 @@ def test_vba_payload():
     pass
 
 
-@pytest.mark.skip(reason="Not Implemented")
-def test_tar_uid_1000():
-    pass
+# @pytest.mark.skip(reason="Not Implemented")
+def test_tar_uid_root():
+    assert b.is_badfile("test/root_own.tar").classification == "unsafe"
 
 
-@pytest.mark.skip(reason="Not Implemented")
-def test_tar_gid_1000():
-    pass
+# @pytest.mark.skip(reason="Not Implemented")
+def test_tar_gid_root():
+    assert b.is_badfile("test/root_group.tar").classification == "unsafe"
 
 
 @pytest.mark.skip(reason="Not Implemented")
