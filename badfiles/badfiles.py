@@ -10,7 +10,8 @@ from typing import IO, Dict, ItemsView, List, Optional, Tuple
 from zipfile import BadZipFile, LargeZipFile, ZipFile
 
 import magic
-import yara  # type: ignore
+import yara
+from badfiles.process_tar import process_tar  # type: ignore
 
 
 class Classification(Enum):
@@ -27,8 +28,8 @@ BadfileMsg = namedtuple("BadfileMsg", ["classification", "message", "file"])
 
 @dataclass
 class Badfile(object):
-    zip_rules: str = "./rules/zip_rules.yara"
-    tar_rules: Optional[str] = None
+    zip_rules: Optional[str] = "./rules/zip_rules.yara"
+    tar_rules: Optional[str] = "./rules/tar_rules.yara"
     # gzip_rules: Optional[str] = None
     # image_rules: Optional[str] = None
 
@@ -38,7 +39,7 @@ class Badfile(object):
             self.rules[k] = yara.compile(v.default) if v.default is not None else None
 
     def _rule_factory(self, f: PathLike, mime: str) -> BadfileMsg:
-        m = f"{mime.split('/')[1]}_rules"
+        m = f"{mime.split('/')[1].replace('x-', '')}_rules"
         if m in self.rules.keys():
             if self.rules[m] is None:
                 # warnings.warn("This mime type has not been implented.")
@@ -47,7 +48,7 @@ class Badfile(object):
                     "This mime type has not been implented.",
                     f,
                 )
-            return self._rule_match(self.rules[m], f)
+            return self._rule_match(self.rules[m], f, mime)
         else:
             # add whitelisted mimetypes here
             # warnings.warn("Unrecognized mime type.")
@@ -55,7 +56,7 @@ class Badfile(object):
                 Classification.UNKNOWN.value, "Unrecognized mime type", pathlib.Path(f).name
             )
 
-    def _rule_match(self, rules: yara.Rules, f: PathLike):
+    def _rule_match(self, rules: yara.Rules, f: PathLike, mime: str):
         hits: List = []
 
         def cb(data):
@@ -66,7 +67,12 @@ class Badfile(object):
             yara.CALLBACK_ABORT
             hits.append(msg)
 
-        rules.match(str(f), callback=cb, which_callbacks=yara.CALLBACK_MATCHES)
+        if mime == "application/x-tar":
+            for t in process_tar(f):
+                rules.match(data=t, callback=cb, which_callbacks=yara.CALLBACK_MATCHES)
+        else:
+            rules.match(str(f), callback=cb, which_callbacks=yara.CALLBACK_MATCHES)
+
         if len(hits) > 0:
             return hits[0]
         return BadfileMsg(Classification.SAFE.value, SAFE_MSG, pathlib.Path(f).name)

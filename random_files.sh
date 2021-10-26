@@ -86,21 +86,18 @@ python3 zip-bomb.py flat 2048 flat-bomb.zip
 python3 zip-bomb.py nested 2048 nested-bomb.zip
 
 
-#make Tarfiles
-sudo su --session-command "touch root.txt; \
-                           tar -cvf  root_group.tar root.txt; \
+chmod 777 ./file001.bin
+tar -cvf exe.tar ./file001.bin
+
+mkdir tar_dir
+cp ./file001.bin ./tar_dir/file001.bin
+tar -cvf tar_dir.tar tar_dir
+
+tar -cvf abs.tar file002.bin
+
+##make Tarfiles
+sudo su --session-command "touch root.sh; \
+                           tar -cvf  root_group.tar ./root.sh; \
                            sudo chown $ME root_group.tar; \
-                           tar -cvf root_own.tar root.txt; \
+                           tar -cvf root_own.tar ./root.sh; \
                            sudo chgrp $ME root_own.tar"
-
-# su $ME
-
-#touch exe_tar.txt
-#chmod 777 exe_tar.txt
-#tar -cvf exe.tar exe_tar.txt
-
-#mkdir tar_dir
-#cp exe_tar.txt ./tar_dir/exe_tar.txt
-#tar -cvf tar_dir
-
-#tar -cvf -P abs.tar file002.bin
