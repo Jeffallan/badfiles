@@ -24,6 +24,7 @@ class Classification(Enum):
         NOT_IMPLEMENTED (str): The file type has not been implemented in the detection engine.
         UKNOWN (str): The file type cannot be determined.
     """
+
     SAFE = "safe"
     UNSAFE = "unsafe"
     NOT_IMPLEMENTED = "not implemented"
@@ -34,6 +35,7 @@ SAFE_MSG = "Nothing malicious was detected"
 
 BadfileMsg = namedtuple("BadfileMsg", ["classification", "message", "file"])
 
+
 @dataclass
 class Badfile(object):
     """The class that implements the badfiles detection engine.
@@ -41,7 +43,7 @@ class Badfile(object):
     Attributes:
         zip_rules (Optional[str]): The path to yara detection rules for zip files (defaults to ./rules/zip_rules.yara)
         tar_rules (Optional[str]): The path to yara detection rules for tar files (defaults to ./rules/tar_rules.yara)
-    """    
+    """
 
     zip_rules: Optional[str] = "./rules/zip_rules.yara"
     tar_rules: Optional[str] = "./rules/tar_rules.yara"
@@ -99,16 +101,16 @@ class Badfile(object):
         )
 
     def is_badfile(self, f: PathLike) -> BadfileMsg:
-        """This function checks for various indicators of potentially malicious content including:  
-            - Mime Type confusion;  
-            - Zip files with high compression rates and;  
-            - Hands f to the proper yara detection rules.   
+        """This function checks for various indicators of potentially malicious content including:
+            - Mime Type confusion;
+            - Zip files with high compression rates and;
+            - Hands f to the proper yara detection rules.
 
         Args:
             f (PathLike): The path of the file to be analyzed
 
         Returns:
-            BadfileMsg: The BadfileMsg named tuple 
+            BadfileMsg: The BadfileMsg named tuple
         """
         is_mime_confusion = self._mime_type_confusion(f)
         if is_mime_confusion[0] is False:
