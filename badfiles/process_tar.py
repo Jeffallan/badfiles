@@ -1,8 +1,18 @@
 from functools import partial
+from os import PathLike
 from typing import Generator
 
 
-def process_tar(f, chunk: int = 512) -> Generator[bytes, None, None]:
+def process_tar(f: PathLike, chunk: int = 512) -> Generator[bytes, None, None]:
+    """A generator function that yields tar file headers.
+
+    Args:
+        f (PathLike): The path the the tar file.
+        chunk (int, optional): The size of the tarfile chunks. Defaults to 512.
+
+    Yields:
+        Generator[bytes, None, None]: Tar file header(s).
+    """
 
     with open(f, "rb") as f:
         for fh in iter(partial(f.read, chunk), b""):
