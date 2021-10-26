@@ -7,10 +7,10 @@ rule tar_owner : Tar
         version = "1"
 
     strings:
-        $file = { ?? [106] 30 30 30 30 } //TODO ask Bill
+        $file = { ?? [110] 30 30 30 30 }
         $tar = { 00 75 73 74 61 72 20 20 00 72 6F 6F 74 00 }
     condition:
-        $file or $tar
+        $file and $tar
 }
 
 rule tar_group : Tar
@@ -22,11 +22,12 @@ rule tar_group : Tar
         version = "1"
 
     strings:
-        $file = { ?? [114] 30 30 30 30 } // TODO ask Bill
+        $file = { ?? [118] 30 30 30 30 }
         $tar = { 00 75 73 74 61 72 20 20 00 [31] 72 6F 6F 74 00 }
     condition:
-        $file or $tar
-
+        $file and $tar
+}
+/*
 rule tar_bad_bits : Tar
 {
     meta:
@@ -36,15 +37,17 @@ rule tar_bad_bits : Tar
         version = "1"
 
     strings:
-        $val = { ?? [101] (31|32|33|34|35|36|37)}
+        $val = { ?? [109] (31|32|33|34|35|36|37)}
 
     condition:
         $val
-
+}
+*/
+/*
 rule tar_permissions : Tar
 {
     meta:
-        name = "Tar with executable files"  //file permissions of 7 and not dir
+        name = "Tar with executable files"  //file are odd and not dir
         created = "09/22/21"
         description = "This tar file contains executable files."
         version = "1"
@@ -56,7 +59,8 @@ rule tar_permissions : Tar
         $dir = { ?? [154] 35}
     condition:
         $owner_perms or $group_perms or $global_perms and not $dir
-
+}
+*/
 rule tar_device : Tar
 {
     meta:
@@ -66,11 +70,11 @@ rule tar_device : Tar
         version = "1"
 
     strings:
-        $val = { ?? [154] (31|34)} //TODO ask Bill
+        $val = { ?? [154] (31|34)}
 
     condition:
         $val
-
+}
 /*
 https://docstore.mik.ua/orelly/unix3/upt/ch38_11.htm
 rule tar_path_naming : Tar

@@ -13,13 +13,13 @@ b = Badfile()
 
 def test_number_violations():
     """This test validates the correct number of errors are found"""
-    hits = []  # 6
+    hits = []  # 16
     for d in pathlib.Path("test").iterdir():
         if d.is_file():
             if b.is_badfile(d).classification == "unsafe":
                 hits.append(b.is_badfile(d))
     print("\n", *hits, sep="\n")
-    assert len(hits) == 14
+    assert len(hits) == 16
 
 
 def test_find_zipslip():
@@ -77,14 +77,14 @@ def test_vba_payload():
     pass
 
 
-@pytest.mark.skip(reason="Not Implemented")
-def test_tar_uid_1000():
-    pass
+# @pytest.mark.skip(reason="Not Implemented")
+def test_tar_uid_root():
+    assert b.is_badfile("test/root_own.tar").classification == "unsafe"
 
 
-@pytest.mark.skip(reason="Not Implemented")
-def test_tar_gid_1000():
-    pass
+# @pytest.mark.skip(reason="Not Implemented")
+def test_tar_gid_root():
+    assert b.is_badfile("test/root_group.tar").classification == "unsafe"
 
 
 @pytest.mark.skip(reason="Not Implemented")

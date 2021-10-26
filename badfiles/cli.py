@@ -7,12 +7,6 @@ from badfiles.badfiles import Badfile, isolate_or_clear
 from gooey import Gooey, GooeyParser  # type: ignore
 
 
-def help():
-    print("badfiles")
-    print("=" * len("badfiles"))
-    print("A malicious file detection engine written with Python and Yara.")
-
-
 @Gooey
 def main():
     parser = GooeyParser(description="Badfiles")
