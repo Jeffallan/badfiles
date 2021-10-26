@@ -1,9 +1,9 @@
 [tool]
 [tool.poetry]
 name = "badfiles"
-version = "0.1.1"
+version = "0.1.2"
 homepage = "https://github.com/jeffallan/badfiles"
-description = "A malicious file detection engine written with Python and Yara.."
+description = "A malicious file detection engine written with Python and Yara."
 authors = ["Maverick Coders <maverickcoders@pm.me>"]
 readme = "README.md"
 license =  "Apache-2.0"
