@@ -690,10 +690,10 @@ Badfile        </code>
 
     <div class="doc doc-contents ">
 
-      <p>This function checks for various indicators of potentially malicious content including:<br />
-    - Mime Type confusion;<br />
-    - Zip files with high compression rates and;<br />
-    - Hands f to the proper yara detection rules.   </p>
+      <p>This function checks for various indicators of potentially malicious content including:
+    - Mime Type confusion;
+    - Zip files with high compression rates and;
+    - Hands f to the proper yara detection rules.</p>
 
 <p><strong>Parameters:</strong></p>
 <table>
@@ -725,23 +725,23 @@ Badfile        </code>
   <tbody>
     <tr>
       <td><code>BadfileMsg</code></td>
-      <td><p>The BadfileMsg named tuple </p></td>
+      <td><p>The BadfileMsg named tuple</p></td>
     </tr>
   </tbody>
 </table>
         <details class="quote">
           <summary>Source code in <code>badfiles/badfiles.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">is_badfile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">:</span> <span class="n">PathLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BadfileMsg</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;This function checks for various indicators of potentially malicious content including:  </span>
-<span class="sd">        - Mime Type confusion;  </span>
-<span class="sd">        - Zip files with high compression rates and;  </span>
-<span class="sd">        - Hands f to the proper yara detection rules.   </span>
+    <span class="sd">&quot;&quot;&quot;This function checks for various indicators of potentially malicious content including:</span>
+<span class="sd">        - Mime Type confusion;</span>
+<span class="sd">        - Zip files with high compression rates and;</span>
+<span class="sd">        - Hands f to the proper yara detection rules.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        f (PathLike): The path of the file to be analyzed</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        BadfileMsg: The BadfileMsg named tuple </span>
+<span class="sd">        BadfileMsg: The BadfileMsg named tuple</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">is_mime_confusion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mime_type_confusion</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">is_mime_confusion</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
