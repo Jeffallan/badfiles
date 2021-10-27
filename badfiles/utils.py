@@ -10,8 +10,8 @@ from typing import Generator
 PKG_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DDE_CHECKS = [
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "vnd.openxmlformats-officedocument.wordprocessingml.document",
 ]
 
 

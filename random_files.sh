@@ -101,3 +101,7 @@ sudo su --session-command "touch root.sh; \
                            sudo chown $ME root_group.tar; \
                            tar -cvf root_own.tar ./root.sh; \
                            sudo chgrp $ME root_own.tar"
+
+
+#DDE injection
+cp ./tests/payloads/* ./test

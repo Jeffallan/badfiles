@@ -3,7 +3,7 @@
 import pathlib
 
 import fire  # type: ignore
-from badfiles.badfiles import Badfile, isolate_or_clear
+from badfiles import Badfile, isolate_or_clear
 from gooey import Gooey, GooeyParser  # type: ignore
 
 
@@ -33,6 +33,13 @@ def main():
     )
     parser.add_argument(
         "--tar_rules",
+        widget="FileChooser",
+        help="Path to tarfile rules",
+        default=None,
+        required=False,
+    )
+    parser.add_argument(
+        "--csv_rules",
         widget="FileChooser",
         help="Path to tarfile rules",
         default=None,
