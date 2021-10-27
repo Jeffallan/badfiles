@@ -13,7 +13,7 @@ from zipfile import BadZipFile, LargeZipFile, Path, ZipFile
 import magic
 import yara
 
-from .utils import DDE_CHECKS, find_dde, process_tar, unzip_doc  # type: ignore
+from .utils import DDE_CHECKS, PKG_DIR, find_dde, process_tar, unzip_doc  # type: ignore
 
 
 class Classification(Enum):
@@ -32,7 +32,6 @@ class Classification(Enum):
     UNKNOWN = "unknown"
 
 
-PKG_DIR = os.path.dirname(os.path.abspath(__file__))
 SAFE_MSG = "Nothing malicious was detected"
 
 BadfileMsg = namedtuple("BadfileMsg", ["classification", "message", "file"])
@@ -49,6 +48,7 @@ class Badfile(object):
 
     zip_rules: Optional[str] = str(pathlib.Path(PKG_DIR).parent / "rules/zip_rules.yara")
     tar_rules: Optional[str] = str(pathlib.Path(PKG_DIR).parent / "rules/tar_rules.yara")
+    csv_rules: Optional[str] = str(pathlib.Path(PKG_DIR).parent / "rules/csv_rules.yara")
     # gzip_rules: Optional[str] = None
     # image_rules: Optional[str] = None
 
@@ -75,6 +75,12 @@ class Badfile(object):
                 # TODO pass to dde util functions.
                 if match.classification == "safe":
                     print("looking for DDE")
+                    if find_dde(unzip_doc(f)):
+                        return BadfileMsg(
+                            Classification.UNSAFE.value,
+                            "DDE detected",
+                            pathlib.Path(f).name,
+                        )
                 return match
             # warnings.warn("Unrecognized mime type.")
             return BadfileMsg(

@@ -1,9 +1,13 @@
+import os
 import pathlib
+import shutil
 import zipfile
 from functools import partial
 from os import PathLike
 from pathlib import Path
 from typing import Generator
+
+PKG_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DDE_CHECKS = [
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -34,7 +38,7 @@ def process_tar(f: PathLike, chunk: int = 512) -> Generator[bytes, None, None]:
                 pass
 
 
-def find_dde(doc_dir: PathLike) -> bool:
+def find_dde(doc_dir: Path) -> bool:
     """Iterates through doc_dir and searches for a directory called externalLinks.
 
     Args:
@@ -48,11 +52,11 @@ def find_dde(doc_dir: PathLike) -> bool:
     for i in p.glob("**/*"):
         if i.name.lower() == "externallinks":
             dde = True
-    pathlib.Path.rmdir(doc_dir)
+    shutil.rmtree(doc_dir)
     return dde
 
 
-def unzip_doc(doc: PathLike, dir="./tmp_doc") -> PathLike:
+def unzip_doc(doc: PathLike, dir=pathlib.Path(PKG_DIR).parent / "./tmp_doc") -> PathLike:
     """Unzips a document to enable the find_dde function.
 
     Args:
