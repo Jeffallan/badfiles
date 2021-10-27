@@ -28,14 +28,14 @@ def main():
         "--zip_rules",
         widget="FileChooser",
         help="Path to zipfile rules.",
-        default="./rules/ziprules.yara",
+        default=None,
         required=False,
     )
     parser.add_argument(
         "--tar_rules",
         widget="FileChooser",
         help="Path to tarfile rules",
-        default="./rules/tartules.yara",
+        default=None,
         required=False,
     )
     # parser.add_argument("--gzip_rules",
@@ -50,14 +50,14 @@ def main():
     #                     required=False)
     parser.add_argument(
         "--iso_dir",
-        widget="FileChooser",
+        widget="DirChooser",
         help="The directory to isolate badfiles",
         default="./test/bad",
         required=False,
     )
     parser.add_argument(
         "--safe_dir",
-        widget="FileChooser",
+        widget="DirChooser",
         help="The directory to store cleared files",
         default="./test/safe",
         required=False,
