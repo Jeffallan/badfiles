@@ -13,7 +13,7 @@ from zipfile import BadZipFile, LargeZipFile, Path, ZipFile
 import magic
 import yara
 
-from .utils import process_tar  # type: ignore
+from .utils import DDE_CHECKS, find_dde, process_tar, unzip_doc  # type: ignore
 
 
 class Classification(Enum):
@@ -69,8 +69,13 @@ class Badfile(object):
                 )
             return self._rule_match(self.rules[m], f, mime)
         else:
-            print(m)
-            print("found")
+            # check for DDE
+            if mime in DDE_CHECKS:
+                match = self._rule_match(self.rules["zip_rules"], f, mime="application/zip")
+                # TODO pass to dde util functions.
+                if match.classification == "safe":
+                    print("looking for DDE")
+                return match
             # warnings.warn("Unrecognized mime type.")
             return BadfileMsg(
                 Classification.UNKNOWN.value, "Unrecognized mime type", pathlib.Path(f).name

@@ -1,9 +1,14 @@
-from functools import partial
-from pathlib import Path
-from os import PathLike
 import pathlib
-from typing import Generator
 import zipfile
+from functools import partial
+from os import PathLike
+from pathlib import Path
+from typing import Generator
+
+DDE_CHECKS = [
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+]
 
 
 def process_tar(f: PathLike, chunk: int = 512) -> Generator[bytes, None, None]:
