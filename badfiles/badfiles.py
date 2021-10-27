@@ -8,11 +8,12 @@ from dataclasses import dataclass
 from enum import Enum
 from os import PathLike
 from typing import IO, Dict, ItemsView, List, Optional, Tuple
-from zipfile import BadZipFile, LargeZipFile, ZipFile
+from zipfile import BadZipFile, LargeZipFile, Path, ZipFile
 
 import magic
 import yara
-from badfiles.process_tar import process_tar  # type: ignore
+
+from .utils import process_tar  # type: ignore
 
 
 class Classification(Enum):
@@ -22,7 +23,7 @@ class Classification(Enum):
         SAFE (str): Nothing malicious was detected.
         UNSAFE (str): Malicious content was detected.
         NOT_IMPLEMENTED (str): The file type has not been implemented in the detection engine.
-        UKNOWN (str): The file type cannot be determined.
+        UNKNOWN (str): The file type cannot be determined.
     """
 
     SAFE = "safe"
@@ -31,6 +32,7 @@ class Classification(Enum):
     UNKNOWN = "unknown"
 
 
+PKG_DIR = os.path.dirname(os.path.abspath(__file__))
 SAFE_MSG = "Nothing malicious was detected"
 
 BadfileMsg = namedtuple("BadfileMsg", ["classification", "message", "file"])
@@ -45,8 +47,8 @@ class Badfile(object):
         tar_rules (Optional[str]): The path to yara detection rules for tar files (defaults to ./rules/tar_rules.yara)
     """
 
-    zip_rules: Optional[str] = "./rules/zip_rules.yara"
-    tar_rules: Optional[str] = "./rules/tar_rules.yara"
+    zip_rules: Optional[str] = str(pathlib.Path(PKG_DIR).parent / "rules/zip_rules.yara")
+    tar_rules: Optional[str] = str(pathlib.Path(PKG_DIR).parent / "rules/tar_rules.yara")
     # gzip_rules: Optional[str] = None
     # image_rules: Optional[str] = None
 
@@ -67,7 +69,8 @@ class Badfile(object):
                 )
             return self._rule_match(self.rules[m], f, mime)
         else:
-            # add whitelisted mimetypes here
+            print(m)
+            print("found")
             # warnings.warn("Unrecognized mime type.")
             return BadfileMsg(
                 Classification.UNKNOWN.value, "Unrecognized mime type", pathlib.Path(f).name
