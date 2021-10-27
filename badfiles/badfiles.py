@@ -110,7 +110,8 @@ class Badfile(object):
 
     def _mime_type_confusion(self, f: PathLike) -> Tuple[bool, str]:
         return (
-            mimetypes.guess_type(f, strict=True)[0] == magic.from_file(str(f), mime=True),
+            mimetypes.guess_type(f, strict=True)[0].split("/")[1]
+            == magic.from_file(str(f), mime=True).split("/")[1],
             magic.from_file(str(f), mime=True),
         )
 
