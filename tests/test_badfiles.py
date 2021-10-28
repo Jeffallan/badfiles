@@ -19,7 +19,7 @@ def test_number_violations():
             if b.is_badfile(d).classification == "unsafe":
                 hits.append(b.is_badfile(d))
     print("\n", *hits, sep="\n")
-    assert len(hits) == 16
+    assert len(hits) == 19
 
 
 def test_find_zipslip():
@@ -64,34 +64,43 @@ def test_nested_bomb():
 
 def test_mime_confusion():
     f = b.is_badfile("test/not_zip.zip")
-    assert f.classification == "unsafe" and f.message == "deceptive extension"
+    assert (
+        f.classification == "unsafe"
+        and f.message
+        == "Deceptive extension. File extension suggests application/zip inspection shows text/plain"
+    )
 
 
-@pytest.mark.skip(reason="Not Implemented")
-def test_dde_payload():
-    pass
+def test_dde_payload_csv():
+    assert b.is_badfile("test/calc.csv").classification == "unsafe"
 
 
-@pytest.mark.skip(reason="Not Implemented")
-def test_vba_payload():
-    pass
+def test_dde_payload_document():
+    assert b.is_badfile("test/payload.xlsx").classification == "unsafe"
 
 
-# @pytest.mark.skip(reason="Not Implemented")
+def test_obfuscated_dde_payload_csv():
+    assert (
+        b.is_badfile("test/payload.csv").classification == "unsafe"
+        and b.is_badfile("test/payload.csv").message
+        == "Deceptive extension. File extension suggests text/csv inspection shows application/octet-stream"
+    )
+
+
 def test_tar_uid_root():
     assert b.is_badfile("test/root_own.tar").classification == "unsafe"
 
 
-# @pytest.mark.skip(reason="Not Implemented")
 def test_tar_gid_root():
     assert b.is_badfile("test/root_group.tar").classification == "unsafe"
 
 
-@pytest.mark.skip(reason="Not Implemented")
-def test_tar_absolute_file_path():
-    pass
-
-
-@pytest.mark.skip(reason="Not Implemented")
-def test_tar_dotfile():
-    pass
+# @pytest.mark.skip(reason="Not Implemented")
+# def test_tar_absolute_file_path():
+#    pass
+#
+#
+# @pytest.mark.skip(reason="Not Implemented")
+# def test_tar_dotfile():
+#    pass
+#

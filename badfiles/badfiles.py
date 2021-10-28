@@ -11,9 +11,8 @@ from typing import IO, Dict, ItemsView, List, Optional, Tuple
 from zipfile import BadZipFile, LargeZipFile, Path, ZipFile
 
 import magic
-import yara
-
-from .utils import DDE_CHECKS, PKG_DIR, find_dde, process_tar, unzip_doc  # type: ignore
+import yara  # type: ignore
+from utils import DDE_CHECKS, PKG_DIR, find_dde, process_tar, unzip_doc  # type: ignore
 
 
 class Classification(Enum):
@@ -44,6 +43,7 @@ class Badfile(object):
     Attributes:
         zip_rules (Optional[str]): The path to yara detection rules for zip files (defaults to ./rules/zip_rules.yara)
         tar_rules (Optional[str]): The path to yara detection rules for tar files (defaults to ./rules/tar_rules.yara)
+        csv_rules (Optional[str]): The path to yara detection rules for tar files (defaults to ./rules/csv_rules.yara)
     """
 
     zip_rules: Optional[str] = str(pathlib.Path(PKG_DIR).parent / "rules/zip_rules.yara")
@@ -54,7 +54,7 @@ class Badfile(object):
 
     def __post_init__(self) -> None:
         self.rules = dict()
-        for k, v in self.__dataclass_fields__.items():
+        for k, v in self.__dataclass_fields__.items():  # type: ignore
             self.rules[k] = yara.compile(v.default) if v.default is not None else None
 
     def _rule_factory(self, f: PathLike, mime: str) -> BadfileMsg:
@@ -74,7 +74,6 @@ class Badfile(object):
                 match = self._rule_match(self.rules["zip_rules"], f, mime="application/zip")
                 # TODO pass to dde util functions.
                 if match.classification == "safe":
-                    print("looking for DDE")
                     if find_dde(unzip_doc(f)):
                         return BadfileMsg(
                             Classification.UNSAFE.value,
@@ -82,9 +81,8 @@ class Badfile(object):
                             pathlib.Path(f).name,
                         )
                 return match
-            # warnings.warn("Unrecognized mime type.")
             return BadfileMsg(
-                Classification.UNKNOWN.value, "Unrecognized mime type", pathlib.Path(f).name
+                Classification.UNKNOWN.value, f"Unrecognized mime type {mime}", pathlib.Path(f).name
             )
 
     def _rule_match(self, rules: yara.Rules, f: PathLike, mime: str):
@@ -108,11 +106,12 @@ class Badfile(object):
             return hits[0]
         return BadfileMsg(Classification.SAFE.value, SAFE_MSG, pathlib.Path(f).name)
 
-    def _mime_type_confusion(self, f: PathLike) -> Tuple[bool, str]:
+    def _mime_type_confusion(self, f: PathLike) -> Tuple[bool, str, str]:
         return (
-            mimetypes.guess_type(f, strict=True)[0].split("/")[1]
+            mimetypes.guess_type(f, strict=True)[0].split("/")[1]  # type: ignore
             == magic.from_file(str(f), mime=True).split("/")[1],
             magic.from_file(str(f), mime=True),
+            mimetypes.guess_type(f, strict=True)[0],
         )
 
     def is_badfile(self, f: PathLike) -> BadfileMsg:
@@ -130,7 +129,9 @@ class Badfile(object):
         is_mime_confusion = self._mime_type_confusion(f)
         if is_mime_confusion[0] is False:
             return BadfileMsg(
-                Classification.UNSAFE.value, "deceptive extension", pathlib.Path(f).name
+                Classification.UNSAFE.value,
+                f"Deceptive extension. File extension suggests {is_mime_confusion[2]} inspection shows {is_mime_confusion[1]}",
+                pathlib.Path(f).name,
             )
         if is_mime_confusion[1] == "application/zip":
             if self._high_compression(f):
@@ -158,14 +159,27 @@ class Badfile(object):
 
 
 def isolate_or_clear(
-    f: PathLike, msg: BadfileMsg, iso_dir: str, safe_dir: str, safe: List = ["safe"]
-):
+    f: PathLike,
+    msg: BadfileMsg,
+    iso_dir: Optional[str] = None,
+    safe_dir: Optional[str] = None,
+    safe: List = ["safe"],
+) -> None:
+    def _move_file(f: PathLike, msg: BadfileMsg, safe: List = safe) -> None:
+        if msg.classification in safe:
+            pathlib.Path(f).rename(pathlib.Path(safe_dir).resolve() / pathlib.Path(f).name)
+
+        else:
+            pathlib.Path(f).rename(pathlib.Path(iso_dir).resolve() / pathlib.Path(f).name)
+
     try:
         pathlib.Path(iso_dir).resolve().mkdir(parents=True)
         pathlib.Path(safe_dir).resolve().mkdir(parents=True)
+        _move_file(f, msg)
+
     except FileExistsError:
+        pathlib.Path(iso_dir).resolve()
+        pathlib.Path(safe_dir).resolve()
+        _move_file(f, msg)
+    except TypeError:
         pass
-    if msg.classification in safe:
-        pathlib.Path(f).rename(pathlib.Path(safe_dir).resolve() / pathlib.Path(f).name)
-    else:
-        pathlib.Path(f).rename(pathlib.Path(iso_dir).resolve() / pathlib.Path(f).name)
