@@ -54,6 +54,7 @@ jobs:
 
       - name: pre-publish documentation
         run: |
+          echo "home/runner/work/badfiles/badfiles" >> $GITHUB_PATH
           poetry install -E doc
           poetry run mkdocs build
 
