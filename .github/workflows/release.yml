@@ -56,9 +56,9 @@ jobs:
         # #echo "home/runner/work/badfiles/badfiles" >> $GITHUB_PATH
         run: |
           poetry install -E doc
-          export PYTHONPATH=/home/runner/work/badfiles/badfiles
-          echo $PYTHONPATH
           poetry run mkdocs build
+        env:
+          PYTHONPATH: $GITHUB_WORKSPACE/badfiles
 
       - name: publish documentation
         uses: peaceiris/actions-gh-pages@v3
