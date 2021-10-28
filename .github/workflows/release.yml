@@ -53,9 +53,11 @@ jobs:
           sudo apt install libgtk-3-dev
 
       - name: pre-publish documentation
+        # #echo "home/runner/work/badfiles/badfiles" >> $GITHUB_PATH
         run: |
-          echo "home/runner/work/badfiles/badfiles" >> $GITHUB_PATH
           poetry install -E doc
+          export PYTHONPATH=/home/runner/work/badfiles/badfiles
+          echo $PYTHONPATH
           poetry run mkdocs build
 
       - name: publish documentation
