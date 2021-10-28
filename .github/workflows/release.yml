@@ -53,12 +53,10 @@ jobs:
           sudo apt install libgtk-3-dev
 
       - name: pre-publish documentation
-        # #echo "home/runner/work/badfiles/badfiles" >> $GITHUB_PATH
         run: |
           poetry install -E doc
+          echo "PYTHONPATH=home/runner/work/badfiles/badfiles" >> $GITHUB_ENV
           poetry run mkdocs build
-        env:
-          PYTHONPATH: $GITHUB_WORKSPACE/badfiles
 
       - name: publish documentation
         uses: peaceiris/actions-gh-pages@v3
