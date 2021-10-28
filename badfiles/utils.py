@@ -5,17 +5,17 @@ import zipfile
 from functools import partial
 from os import PathLike
 from pathlib import Path
-from typing import Generator
+from typing import BinaryIO, Generator
 
 PKG_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DDE_CHECKS = [
-    "vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    "vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
 ]
 
 
-def process_tar(f: PathLike, chunk: int = 512) -> Generator[bytes, None, None]:
+def process_tar(f: str, chunk: int = 512) -> Generator[bytes, None, None]:
     """A generator function that yields tar file headers.
 
     Args:
@@ -71,5 +71,5 @@ def unzip_doc(doc: PathLike, dir=pathlib.Path(PKG_DIR).parent / "./tmp_doc") -> 
     return dir
 
 
-if __name__ == "__main__":
-    print([p for p in process_tar("./test/tar_dir.tar")])
+# if __name__ == "__main__":
+#    print([p for p in process_tar("./test/tar_dir.tar")])

@@ -2,9 +2,10 @@
 
 import pathlib
 
-import fire  # type: ignore
-from badfiles import Badfile, isolate_or_clear
+# import fire  # type: ignore
 from gooey import Gooey, GooeyParser  # type: ignore
+
+from badfiles import Badfile, isolate_or_clear
 
 
 @Gooey
@@ -16,13 +17,6 @@ def main():
     )
     parser.add_argument(
         "--dir", widget="DirChooser", default=None, help="A directory to analyze", required=False
-    )
-    parser.add_argument(
-        "--quarantine",
-        widget="DirChooser",
-        default=None,
-        help="The directory to store files that fail the badfile test.",
-        required=False,
     )
     parser.add_argument(
         "--zip_rules",
@@ -58,15 +52,23 @@ def main():
     parser.add_argument(
         "--iso_dir",
         widget="DirChooser",
-        help="The directory to isolate badfiles",
-        default="./test/bad",
+        help="The directory to isolate badfiles.",
+        default=None,
         required=False,
     )
+    # parser.add_argument(
+    #    "--quarantine",
+    #    widget="DirChooser",
+    #    default=None,
+    #    help="The directory to store files that fail the badfile test.",
+    #    default=None,
+    #    required=False,
+    # )
     parser.add_argument(
         "--safe_dir",
         widget="DirChooser",
         help="The directory to store cleared files",
-        default="./test/safe",
+        default=None,
         required=False,
     )
 
@@ -93,7 +95,7 @@ def main():
 
     if args.dir:
         res = []
-        for d in pathlib.Path(args.dir).iterdir():
+        for d in pathlib.Path(args.dir).glob("**/*"):
             try:
                 f = bad.is_badfile(d)
                 print(f)

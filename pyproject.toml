@@ -25,7 +25,6 @@ packages = [
 
 [tool.poetry.dependencies]
 python = ">=3.6.1,<4.0"
-fire = "0.4.0"
 
 black  = { version = "20.8b1", optional = true}
 isort  = { version = "5.6.4", optional = true}
