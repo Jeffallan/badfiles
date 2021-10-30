@@ -57,7 +57,8 @@ jobs:
         run: |
           poetry install -E doc
           echo "PYTHONPATH=/home/runner/work/badfiles/badfiles" >> $GITHUB_ENV
-          echo $GITHUB_ENV
+          echo "--- PYTHONPATH ---"
+          echo "$PYTHONPATH"
           poetry run mkdocs build
 
       - name: publish documentation
