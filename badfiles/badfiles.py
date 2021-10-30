@@ -12,7 +12,8 @@ from zipfile import BadZipFile, LargeZipFile, Path, ZipFile
 
 import magic
 import yara  # type: ignore
-from utils import DDE_CHECKS, PKG_DIR, find_dde, process_tar, unzip_doc  # type: ignore
+
+from badfiles.utils import DDE_CHECKS, PKG_DIR, find_dde, process_tar, unzip_doc  # type: ignore
 
 
 class Classification(Enum):

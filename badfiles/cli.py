@@ -5,7 +5,7 @@ import pathlib
 # import fire  # type: ignore
 from gooey import Gooey, GooeyParser  # type: ignore
 
-from badfiles import Badfile, isolate_or_clear
+from badfiles.badfiles import Badfile, isolate_or_clear
 
 
 @Gooey
