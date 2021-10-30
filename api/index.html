@@ -426,6 +426,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#badfiles.utils" class="md-nav__link">
+    badfiles.utils
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#badfiles.utils.find_dde" class="md-nav__link">
+    find_dde()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#badfiles.utils.process_tar" class="md-nav__link">
+    process_tar()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#badfiles.utils.unzip_doc" class="md-nav__link">
+    unzip_doc()
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -550,6 +578,34 @@
         <li class="md-nav__item">
   <a href="#badfiles.badfiles.Classification" class="md-nav__link">
     Classification
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#badfiles.utils" class="md-nav__link">
+    badfiles.utils
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#badfiles.utils.find_dde" class="md-nav__link">
+    find_dde()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#badfiles.utils.process_tar" class="md-nav__link">
+    process_tar()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#badfiles.utils.unzip_doc" class="md-nav__link">
+    unzip_doc()
   </a>
   
 </li>
@@ -951,6 +1007,261 @@ Classification            (<span data-autorefs-optional-hover=enum.Enum>Enum</sp
   </div>
 
 
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+<a id="badfiles.utils"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="badfiles.utils.find_dde" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">find_dde</span><span class="p">(</span><span class="n">doc_dir</span><span class="p">)</span></code>
+
+
+<a href="#badfiles.utils.find_dde" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Iterates through doc_dir and searches for a directory called externalLinks.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>doc_dir</code></td>
+        <td><code>PathLike</code></td>
+        <td><p>The target directory to be analyzed.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>bool</code></td>
+      <td><p>True if a folder called externalLinks otherwise returns False.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>badfiles/utils.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">find_dde</span><span class="p">(</span><span class="n">doc_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Iterates through doc_dir and searches for a directory called externalLinks.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        doc_dir (PathLike): The target directory to be analyzed.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: True if a folder called externalLinks otherwise returns False.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">doc_dir</span><span class="p">)</span>
+    <span class="n">dde</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;**/*&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;externallinks&quot;</span><span class="p">:</span>
+            <span class="n">dde</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">doc_dir</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dde</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="badfiles.utils.process_tar" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">process_tar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">chunk</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span></code>
+
+
+<a href="#badfiles.utils.process_tar" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>A generator function that yields tar file headers.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>f</code></td>
+        <td><code>PathLike</code></td>
+        <td><p>The path the the tar file.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>chunk</code></td>
+        <td><code>int</code></td>
+        <td><p>The size of the tarfile chunks. Defaults to 512.</p></td>
+        <td><code>512</code></td>
+      </tr>
+  </tbody>
+</table>      <div class="admonition yields">
+<p class="admonition-title">Yields</p>
+<p>Generator[bytes, None, None]: Tar file header(s).</p>
+</div>
+
+        <details class="quote">
+          <summary>Source code in <code>badfiles/utils.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process_tar</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">chunk</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;A generator function that yields tar file headers.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        f (PathLike): The path the the tar file.</span>
+<span class="sd">        chunk (int, optional): The size of the tarfile chunks. Defaults to 512.</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        Generator[bytes, None, None]: Tar file header(s).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">fh</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">,</span> <span class="n">chunk</span><span class="p">),</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">fh</span>
+                <span class="c1"># size = data.decode(&quot;ascii&quot;)[124:135]</span>
+                <span class="c1"># print(size)</span>
+                <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;ascii&quot;</span><span class="p">)[</span><span class="mi">257</span><span class="p">:</span><span class="mi">262</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;ustar&quot;</span> <span class="ow">and</span> <span class="n">data</span><span class="p">[</span><span class="mi">125</span><span class="p">:</span><span class="mi">135</span><span class="p">]</span><span class="o">.</span><span class="n">isascii</span><span class="p">():</span>
+                    <span class="k">yield</span> <span class="n">data</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">UnicodeDecodeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+                <span class="k">pass</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="badfiles.utils.unzip_doc" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">unzip_doc</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/home/runner/work/badfiles/badfiles/tmp_doc&#39;</span><span class="p">))</span></code>
+
+
+<a href="#badfiles.utils.unzip_doc" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Unzips a document to enable the find_dde function.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>doc</code></td>
+        <td><code>PathLike</code></td>
+        <td><p>The path to the document to unzip</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>dir</code></td>
+        <td><code>str</code></td>
+        <td><p>The directory to unzip the document. Defaults to "./tmp_doc".</p></td>
+        <td><code>PosixPath(&#39;/home/runner/work/badfiles/badfiles/tmp_doc&#39;)</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>PathLike</code></td>
+      <td><p>The directory of the unzipped document.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>badfiles/utils.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">unzip_doc</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">PathLike</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">PKG_DIR</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">&quot;./tmp_doc&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PathLike</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Unzips a document to enable the find_dde function.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        doc (PathLike): The path to the document to unzip</span>
+<span class="sd">        dir (str, optional): The directory to unzip the document. Defaults to &quot;./tmp_doc&quot;.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        PathLike: The directory of the unzipped document.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+    <span class="n">z</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="nb">dir</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">dir</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
 
 
 
