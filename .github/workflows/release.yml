@@ -54,8 +54,8 @@ jobs:
           pip install tox-gh-actions poetry
 
       - name: Set PYTHONPATH
-        env:
-          PYTHONPATH: echo "PYTHONPATH=`pwd`/badfiles" >> $GITHUB_ENV
+        run: |
+          echo "PYTHONPATH=`pwd`/badfiles" >> $GITHUB_ENV
 
       - name: pre-publish documentation
         run: |
