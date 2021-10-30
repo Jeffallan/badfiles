@@ -53,10 +53,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install tox-gh-actions poetry
 
+      - name: Set PYTHONPATH
+        env:
+          PYTHONPATH: echo "PYTHONPATH=`pwd`/badfiles" >> $GITHUB_ENV
+
       - name: pre-publish documentation
         run: |
           poetry install -E doc
-          echo "PYTHONPATH=/home/runner/work/badfiles/badfiles" >> $GITHUB_ENV
           echo "--- PYTHONPATH ---"
           echo "$PYTHONPATH"
           poetry run mkdocs build
