@@ -104,4 +104,4 @@ sudo su --session-command "touch root.sh; \
 
 
 #DDE injection
-cp ./tests/payloads/* ./test
+cp ../tests/payloads/* .

@@ -107,12 +107,17 @@ class Badfile(object):
         return BadfileMsg(Classification.SAFE.value, SAFE_MSG, pathlib.Path(f).name)
 
     def _mime_type_confusion(self, f: PathLike) -> Tuple[bool, str, str]:
-        return (
-            mimetypes.guess_type(f, strict=True)[0].split("/")[1]  # type: ignore
-            == magic.from_file(str(f), mime=True).split("/")[1],
-            magic.from_file(str(f), mime=True),
-            mimetypes.guess_type(f, strict=True)[0],
-        )
+
+        try:
+            confusion = (
+                mimetypes.guess_type(f, strict=True)[0].split("/")[1]  # type: ignore
+                == magic.from_file(str(f), mime=True).split("/")[1],
+                magic.from_file(str(f), mime=True),
+                mimetypes.guess_type(f, strict=True)[0],
+            )
+        except AttributeError:
+            confusion = (False, "", "")
+        return confusion
 
     def is_badfile(self, f: PathLike) -> BadfileMsg:
         """This function checks for various indicators of potentially malicious content including:
