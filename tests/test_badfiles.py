@@ -14,7 +14,7 @@ b = Badfile()
 
 def test_number_violations():
     """This test validates the correct number of errors are found"""
-    hits = []  # 16
+    hits = []
     for d in pathlib.Path("test").iterdir():
         if d.is_file():
             if b.is_badfile(d).classification == "unsafe":

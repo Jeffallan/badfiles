@@ -10,8 +10,19 @@ from typing import BinaryIO, Generator
 RULE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DDE_CHECKS = [
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    # excel
+    "application/vnd.ms-excel",  # xls xlm xla xlc xlt xlw
+    "application/vnd.ms-excel.sheet.binary.macroEnabled.12",  # xlsb
+    "application/vnd.ms-excel.sheet.macroEnabled.12",  # xlsm
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",  # xlsx,
+    # word
+    "application/msword" "application/vnd.ms-word.document.macroEnabled.12",  # doc  # docm
+    "application/vnd.ms-word.template.macroEnabled.12",  # dotm
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",  # docx
+    # powerpoint
+    "application/vnd.ms-powerpoint",  # ppt or pps
+    "application/vnd.ms-powerpoint.presentation.macroEnabled.12",  # pptm
+    "application/vnd.openxmlformats-officedocument.presentationml.presentation",  # pptx
 ]
 
 

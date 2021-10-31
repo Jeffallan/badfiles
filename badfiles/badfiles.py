@@ -73,7 +73,6 @@ class Badfile(object):
             # check for DDE
             if mime in DDE_CHECKS:
                 match = self._rule_match(self.rules["zip_rules"], f, mime="application/zip")
-                # TODO pass to dde util functions.
                 if match.classification == "safe":
                     if find_dde(unzip_doc(f)):
                         return BadfileMsg(
