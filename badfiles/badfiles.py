@@ -13,7 +13,7 @@ from zipfile import BadZipFile, LargeZipFile, Path, ZipFile
 import magic
 import yara  # type: ignore
 
-from badfiles.utils import DDE_CHECKS, PKG_DIR, find_dde, process_tar, unzip_doc  # type: ignore
+from badfiles.utils import DDE_CHECKS, RULE_DIR, find_dde, process_tar, unzip_doc  # type: ignore
 
 
 class Classification(Enum):
@@ -47,9 +47,9 @@ class Badfile(object):
         csv_rules (Optional[str]): The path to yara detection rules for tar files (defaults to ./rules/csv_rules.yara)
     """
 
-    zip_rules: Optional[str] = str(pathlib.Path(PKG_DIR).parent / "rules/zip_rules.yara")
-    tar_rules: Optional[str] = str(pathlib.Path(PKG_DIR).parent / "rules/tar_rules.yara")
-    csv_rules: Optional[str] = str(pathlib.Path(PKG_DIR).parent / "rules/csv_rules.yara")
+    zip_rules: Optional[str] = str(pathlib.Path(RULE_DIR) / "rules/zip_rules.yara")
+    tar_rules: Optional[str] = str(pathlib.Path(RULE_DIR) / "rules/tar_rules.yara")
+    csv_rules: Optional[str] = str(pathlib.Path(RULE_DIR) / "rules/csv_rules.yara")
     # gzip_rules: Optional[str] = None
     # image_rules: Optional[str] = None
 

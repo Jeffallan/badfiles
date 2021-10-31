@@ -7,7 +7,7 @@ from os import PathLike
 from pathlib import Path
 from typing import BinaryIO, Generator
 
-PKG_DIR = os.path.dirname(os.path.abspath(__file__))
+RULE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DDE_CHECKS = [
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -56,7 +56,7 @@ def find_dde(doc_dir: Path) -> bool:
     return dde
 
 
-def unzip_doc(doc: PathLike, dir=pathlib.Path(PKG_DIR).parent / "./tmp_doc") -> PathLike:
+def unzip_doc(doc: PathLike, dir=pathlib.Path(RULE_DIR).parent / "./tmp_doc") -> PathLike:
     """Unzips a document to enable the find_dde function.
 
     Args:
@@ -72,4 +72,4 @@ def unzip_doc(doc: PathLike, dir=pathlib.Path(PKG_DIR).parent / "./tmp_doc") -> 
 
 
 # if __name__ == "__main__":
-#    print([p for p in process_tar("./test/tar_dir.tar")])
+#     print(RULE_DIR)
