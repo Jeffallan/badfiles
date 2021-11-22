@@ -1,43 +1,5 @@
-# Installation
+### Installation
 
-## Stable release
+This package can be installed with `pip install badfiles`. The package also provides a convenance script called `badfiles` that runs a cli version of the detection engine. The `badfiles` command has an an additional dependency,[Gooey](https://github.com/chriskiehl/Gooey). If you wish to use the `badfiles` script please install the additional dependency via `pip install badfiles[gui]`.
 
-To install badfiles, run this command in your
-terminal:
-
-``` console
-$ pip install badfiles
-```
-
-This is the preferred method to install badfiles, as it will always install the most recent stable release.
-
-If you don't have [pip][] installed, this [Python installation guide][]
-can guide you through the process.
-
-## From source
-
-The source for badfiles can be downloaded from
-the [Github repo][].
-
-You can either clone the public repository:
-
-``` console
-$ git clone git://github.com/jeffallan/badfiles
-```
-
-Or download the [tarball][]:
-
-``` console
-$ curl -OJL https://github.com/jeffallan/badfiles/tarball/master
-```
-
-Once you have a copy of the source, you can install it with:
-
-``` console
-$ pip install .
-```
-
-  [pip]: https://pip.pypa.io
-  [Python installation guide]: http://docs.python-guide.org/en/latest/starting/installation/
-  [Github repo]: https://github.com/%7B%7B%20cookiecutter.github_username%20%7D%7D/%7B%7B%20cookiecutter.project_slug%20%7D%7D
-  [tarball]: https://github.com/%7B%7B%20cookiecutter.github_username%20%7D%7D/%7B%7B%20cookiecutter.project_slug%20%7D%7D/tarball/master
+This project a Yara installation. Installation instructions can be found [here](https://yara.readthedocs.io/en/stable/gettingstarted.html). This project also relies on [python-magic](https://github.com/ahupp/python-magic) which may require additional installation steps depending on your operating system.
