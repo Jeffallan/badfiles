@@ -8,7 +8,7 @@ authors = ["Maverick Coders <maverickcoders@pm.me>"]
 readme = "README.md"
 license =  "Apache-2.0"
 classifiers=[
-    'Development Status :: 2 - Pre-Alpha',
+    'Development Status :: 3 - Alpha',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: Apache Software License',
     'Natural Language :: English',
