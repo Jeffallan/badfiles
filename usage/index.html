@@ -391,6 +391,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#aws-lambda-function" class="md-nav__link">
+    AWS Lambda Function
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -522,6 +529,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#aws-lambda-function" class="md-nav__link">
+    AWS Lambda Function
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -547,8 +561,8 @@
                   <h1>usage</h1>
                 
                 <h4 id="quickstart">Quickstart<a class="headerlink" href="#quickstart" title="Permanent link">&para;</a></h4>
-<p>The Badfile class provides one public method called <code>is_badfile</code> which analyzes a file.</p>
-<p>There is also a convenance method called <code>isolate_or_clear</code> to help the developer handle the file in question.</p>
+<p>The Badfile class provides one public method called <code>is_badfile</code> which analyzes a file according to the detection methods outlined <a href="https://jeffallan.github.io/badfiles/detection_methods/">here</a>.</p>
+<p>There is also a convenance method called <code>isolate_or_clear</code> to handle the file in question.</p>
 <p>Their usage is demonstrated below:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -565,7 +579,9 @@
 <span class="normal">13</span>
 <span class="normal">14</span>
 <span class="normal">15</span>
-<span class="normal">16</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">badfiles.badfiles</span> <span class="kn">import</span> <span class="n">Badfiles</span><span class="p">,</span> <span class="n">isolate_or_clear</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">badfiles.badfiles</span> <span class="kn">import</span> <span class="n">Badfiles</span><span class="p">,</span> <span class="n">isolate_or_clear</span>
 
 <span class="n">b</span> <span class="o">=</span> <span class="n">Badfile</span><span class="p">()</span>
 
@@ -574,17 +590,19 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">returns a named tuple with a classification: (safe, unsafe, unknown, or not implemented)</span>
 <span class="sd">                            message: A message explaining the classification</span>
-<span class="sd">                            file: The name of the file in the is_badfile function</span>
+<span class="sd">                            file: The name of the file being analyzed</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="n">isolate_or_clear</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="n">file</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="n">bad</span><span class="p">,</span> <span class="n">iso_dir</span><span class="o">=</span><span class="n">iso_dir</span><span class="p">,</span> <span class="n">safe_dir</span><span class="o">=</span><span class="n">safe_dir</span><span class="p">,</span> <span class="n">safe</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;safe&quot;</span><span class="p">,])</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">The safe parameter is a list of badfile classifications, returned from is_badfile(), that are deemed safe (defaults to [&quot;safe&quot;,]). If the classification in the msg parameter is in the safe list the file is moved to safe_dir otherwise it is moved to iso_dir.</span>
+<span class="sd">The safe parameter is a list of badfile classifications, returned from is_badfile(),</span>
+<span class="sd">that are deemed safe (defaults to [&quot;safe&quot;,]). If the classification in the msg parameter</span>
+<span class="sd">is in the safe list the file is moved to safe_dir otherwise it is moved to iso_dir.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 </code></pre></div>
 </td></tr></table>
 <h4 id="custom-yara-rules">Custom Yara Rules<a class="headerlink" href="#custom-yara-rules" title="Permanent link">&para;</a></h4>
-<p>A user may provide custom Yara detection rules upon class instantiation like so:</p>
+<p>One may provide custom Yara detection rules upon class instantiation like so:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -655,6 +673,8 @@
 </code></pre></div>
 </td></tr></table>
 <h5 id="django">Django<a class="headerlink" href="#django" title="Permanent link">&para;</a></h5>
+<p>//TODO</p>
+<h5 id="aws-lambda-function">AWS Lambda Function<a class="headerlink" href="#aws-lambda-function" title="Permanent link">&para;</a></h5>
 <p>//TODO</p>
                 
               
