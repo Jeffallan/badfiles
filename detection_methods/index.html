@@ -14,7 +14,7 @@
     
     
       
-        <title>contributing - badfiles</title>
+        <title>detection methods - badfiles</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#contributing" class="md-skip">
+        <a href="#generally-suspicious-files" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              contributing
+              detection methods
             
           </span>
         </div>
@@ -198,10 +198,12 @@
         
   
   
+    
+  
 
 
   <li class="md-tabs__item">
-    <a href="../detection_methods/" class="md-tabs__link">
+    <a href="./" class="md-tabs__link md-tabs__link--active">
       detection methods
     </a>
   </li>
@@ -222,12 +224,10 @@
         
   
   
-    
-  
 
 
   <li class="md-tabs__item">
-    <a href="./" class="md-tabs__link md-tabs__link--active">
+    <a href="../contributing/" class="md-tabs__link">
       contributing
     </a>
   </li>
@@ -342,11 +342,179 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../detection_methods/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          detection methods
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         detection methods
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#generally-suspicious-files" class="md-nav__link">
+    Generally Suspicious Files
+  </a>
+  
+    <nav class="md-nav" aria-label="Generally Suspicious Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mime-type-confusion" class="md-nav__link">
+    Mime Type Confusion
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#files-with-a-root-uid-or-gid-or-sticky-setuid-or-setgid-bit-nix-only" class="md-nav__link">
+    Files With a Root UID or GID or Sticky, Setuid, or Setgid Bit (*NIX only)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#csv-files" class="md-nav__link">
+    CSV Files
+  </a>
+  
+    <nav class="md-nav" aria-label="CSV Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#csv-injection" class="md-nav__link">
+    CSV Injection
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zip-files" class="md-nav__link">
+    Zip Files
+  </a>
+  
+    <nav class="md-nav" aria-label="Zip Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symlink-attacks" class="md-nav__link">
+    Symlink Attacks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zip-slip" class="md-nav__link">
+    Zip Slip
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zip-bombs" class="md-nav__link">
+    Zip Bombs
+  </a>
+  
+    <nav class="md-nav" aria-label="Zip Bombs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nested-zip-bombs" class="md-nav__link">
+    Nested Zip Bombs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flat-zip-bombs" class="md-nav__link">
+    Flat Zip Bombs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#office-documents" class="md-nav__link">
+    Office Documents
+  </a>
+  
+    <nav class="md-nav" aria-label="Office Documents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dde-injection" class="md-nav__link">
+    DDE Injection
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tar-files" class="md-nav__link">
+    Tar Files
+  </a>
+  
+    <nav class="md-nav" aria-label="Tar Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#files-with-absolute-paths" class="md-nav__link">
+    Files With Absolute Paths
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -372,127 +540,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          contributing
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
         contributing
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contributing" class="md-nav__link">
-    Contributing
-  </a>
-  
-    <nav class="md-nav" aria-label="Contributing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#types-of-contributions" class="md-nav__link">
-    Types of Contributions
-  </a>
-  
-    <nav class="md-nav" aria-label="Types of Contributions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#report-bugs" class="md-nav__link">
-    Report Bugs
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fix-bugs" class="md-nav__link">
-    Fix Bugs
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#implement-features" class="md-nav__link">
-    Implement Features
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#write-documentation" class="md-nav__link">
-    Write Documentation
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#submit-feedback" class="md-nav__link">
-    Submit Feedback
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-started" class="md-nav__link">
-    Get Started!
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pull-request-guidelines" class="md-nav__link">
-    Pull Request Guidelines
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tips" class="md-nav__link">
-    Tips
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deploying" class="md-nav__link">
-    Deploying
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -535,52 +587,92 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#contributing" class="md-nav__link">
-    Contributing
+  <a href="#generally-suspicious-files" class="md-nav__link">
+    Generally Suspicious Files
   </a>
   
-    <nav class="md-nav" aria-label="Contributing">
+    <nav class="md-nav" aria-label="Generally Suspicious Files">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#types-of-contributions" class="md-nav__link">
-    Types of Contributions
+  <a href="#mime-type-confusion" class="md-nav__link">
+    Mime Type Confusion
   </a>
   
-    <nav class="md-nav" aria-label="Types of Contributions">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#files-with-a-root-uid-or-gid-or-sticky-setuid-or-setgid-bit-nix-only" class="md-nav__link">
+    Files With a Root UID or GID or Sticky, Setuid, or Setgid Bit (*NIX only)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#csv-files" class="md-nav__link">
+    CSV Files
+  </a>
+  
+    <nav class="md-nav" aria-label="CSV Files">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#report-bugs" class="md-nav__link">
-    Report Bugs
+  <a href="#csv-injection" class="md-nav__link">
+    CSV Injection
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zip-files" class="md-nav__link">
+    Zip Files
+  </a>
+  
+    <nav class="md-nav" aria-label="Zip Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symlink-attacks" class="md-nav__link">
+    Symlink Attacks
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#fix-bugs" class="md-nav__link">
-    Fix Bugs
+  <a href="#zip-slip" class="md-nav__link">
+    Zip Slip
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#implement-features" class="md-nav__link">
-    Implement Features
+  <a href="#zip-bombs" class="md-nav__link">
+    Zip Bombs
+  </a>
+  
+    <nav class="md-nav" aria-label="Zip Bombs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nested-zip-bombs" class="md-nav__link">
+    Nested Zip Bombs
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#write-documentation" class="md-nav__link">
-    Write Documentation
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#submit-feedback" class="md-nav__link">
-    Submit Feedback
+  <a href="#flat-zip-bombs" class="md-nav__link">
+    Flat Zip Bombs
   </a>
   
 </li>
@@ -590,30 +682,42 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#office-documents" class="md-nav__link">
+    Office Documents
+  </a>
+  
+    <nav class="md-nav" aria-label="Office Documents">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
-  <a href="#get-started" class="md-nav__link">
-    Get Started!
+  <a href="#dde-injection" class="md-nav__link">
+    DDE Injection
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#pull-request-guidelines" class="md-nav__link">
-    Pull Request Guidelines
-  </a>
+      </ul>
+    </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#tips" class="md-nav__link">
-    Tips
+      
+        <li class="md-nav__item">
+  <a href="#tar-files" class="md-nav__link">
+    Tar Files
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Tar Files">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#deploying" class="md-nav__link">
-    Deploying
+  <a href="#files-with-absolute-paths" class="md-nav__link">
+    Files With Absolute Paths
   </a>
   
 </li>
@@ -635,123 +739,54 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/jeffallan/badfiles/edit/master/docs/contributing.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/jeffallan/badfiles/edit/master/docs/detection_methods.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>contributing</h1>
+                  <h1>detection methods</h1>
                 
-                <!-- BEGIN INCLUDE ../CONTRIBUTING.md   -->
-<h2 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Permanent link">&para;</a></h2>
-<p>Contributions are welcome, and they are greatly appreciated! Every little bit
-helps, and credit will always be given.</p>
-<p>You can contribute in many ways:</p>
-<h3 id="types-of-contributions">Types of Contributions<a class="headerlink" href="#types-of-contributions" title="Permanent link">&para;</a></h3>
-<h4 id="report-bugs">Report Bugs<a class="headerlink" href="#report-bugs" title="Permanent link">&para;</a></h4>
-<p>Report bugs at https://github.com/jeffallan/badfiles/issues.</p>
-<p>If you are reporting a bug, please include:</p>
+                <h3 id="generally-suspicious-files">Generally Suspicious Files<a class="headerlink" href="#generally-suspicious-files" title="Permanent link">&para;</a></h3>
+<h4 id="mime-type-confusion">Mime Type Confusion<a class="headerlink" href="#mime-type-confusion" title="Permanent link">&para;</a></h4>
+<p>Also known as mime type mismatch. This occurs when a file extension suggests one file type when it is actually another. An example of an attack using this principal can be found <a href="https://capec.mitre.org/data/definitions/209.html">here</a>.</p>
+<p>This can be detected by comparing the expected mime type derived from the file extension and the actual file type by inspecting the <a href="https://en.wikipedia.org/wiki/List_of_file_signatures">magic bytes</a> of the file using the <a href="https://github.com/Jeffallan/badfiles/blob/a17263a5e6fd0312a01c17b33f364f86510105f0/badfiles/badfiles.py#L109"><code>_mime_type_confusion</code></a> function.</p>
+<h4 id="files-with-a-root-uid-or-gid-or-sticky-setuid-or-setgid-bit-nix-only">Files With a Root UID or GID or Sticky, Setuid, or Setgid Bit (*NIX only)<a class="headerlink" href="#files-with-a-root-uid-or-gid-or-sticky-setuid-or-setgid-bit-nix-only" title="Permanent link">&para;</a></h4>
+<p>Generally speaking, files that belong to the root user or root group are something we do not want to receive from a user especially if this file is also executable. This is also true for files with a setuid or set gid bit. Lastly, files with a sticky bit are flagged because this bit restricts file deletion to just the owner of the file.</p>
+<p>Detection strategies for the above vary by file type. Mostly, this is accomplished with a custom <a href="https://github.com/Jeffallan/badfiles/tree/main/badfiles/rules">Yara rule</a></p>
+<h3 id="csv-files">CSV Files<a class="headerlink" href="#csv-files" title="Permanent link">&para;</a></h3>
+<h4 id="csv-injection">CSV Injection<a class="headerlink" href="#csv-injection" title="Permanent link">&para;</a></h4>
+<p><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/CSV%20Injection">CSV injection</a> occurs when a user chooses to open a CSV file in a program like Excel. While this attack vector is mitigated by the default settings in excel-like programs, these default settings vary from program to program. Additionally, an unsuspecting user can alter these settings; creating an unsafe environment. Furthermore, CSV injection payloads can be <a href="https://blog.reversinglabs.com/blog/cvs-dde-exploits-and-obfuscation">obfuscated</a> to evade detection.</p>
+<p><a href="https://github.com/Jeffallan/badfiles/blob/main/badfiles/rules/csv_rules.yara">Yara rules</a> seem to be the best solution for detecting these types of files</p>
+<h3 id="zip-files">Zip Files<a class="headerlink" href="#zip-files" title="Permanent link">&para;</a></h3>
+<h4 id="symlink-attacks">Symlink Attacks<a class="headerlink" href="#symlink-attacks" title="Permanent link">&para;</a></h4>
+<p>A <a href="https://security.stackexchange.com/questions/73718/how-zip-symlink-works">symlink attack</a> works by creating a symlink to a target file like <code>/etc/passwd</code> and masking it with an arbitrary filename like <code>safe_upload.jpg</code> if this file is unzipped, any user that has the correct permissions for the target file can access it through the symlink.</p>
+<p>Symlinks attacks are detected with a Yara <a href="https://github.com/Jeffallan/badfiles/blob/a17263a5e6fd0312a01c17b33f364f86510105f0/badfiles/rules/zip_rules.yara#L1">rule</a> that checks for a symlink bit in the central file header (<code>0x504B0102</code>)</p>
+<h4 id="zip-slip">Zip Slip<a class="headerlink" href="#zip-slip" title="Permanent link">&para;</a></h4>
+<p>A <a href="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/ba2c02cc3ef3f63df6351aa55509bdac137fb3b8/Upload%20Insecure%20Files/Zip%20Slip/README.md">zip slip</a> occurs when a zip file contains a name with a <a href="https://portswigger.net/web-security/file-path-traversal">directory traversal</a> build in (../../malicious_file.zip) which can lead to content being uploaded to unintended locations.</p>
+<p>Zip slips are <a href="https://github.com/Jeffallan/badfiles/blob/a17263a5e6fd0312a01c17b33f364f86510105f0/badfiles/rules/zip_rules.yara#L60">detected</a> by navigating to the central file header in the zip archive <code>0x504B0102</code> and searching for <code>../</code> at the beginning of the file name.</p>
+<h4 id="zip-bombs">Zip Bombs<a class="headerlink" href="#zip-bombs" title="Permanent link">&para;</a></h4>
+<p>Zip Bombs come in two varieties nested and flat. In each case when this malicious file is unzipped it creates an extremely large file potentially resulting an a denial of service due to a lack of disk space on the server.</p>
+<h5 id="nested-zip-bombs">Nested Zip Bombs<a class="headerlink" href="#nested-zip-bombs" title="Permanent link">&para;</a></h5>
+<p>A nested zip bomb is a zip file that contains other zip files.</p>
+<p>This type of zip bomb is <a href="https://github.com/Jeffallan/badfiles/blob/a17263a5e6fd0312a01c17b33f364f86510105f0/badfiles/rules/zip_rules.yara#L74">detected</a> by navigating to every local file header <code>0x504B0304</code> and searching for the string <code>.zip</code></p>
+<h5 id="flat-zip-bombs">Flat Zip Bombs<a class="headerlink" href="#flat-zip-bombs" title="Permanent link">&para;</a></h5>
+<p>Flat zip bombs are zip archives that are constructed in such a way that they're compression rates are much higher than a normal zip file compression range of 60%-70% (<strong>citation needed</strong>).</p>
+<p>To detect flat zip bombs one must investigate the compression rate of the zip archive. This is implemented in the <a href="https://github.com/Jeffallan/badfiles/blob/a17263a5e6fd0312a01c17b33f364f86510105f0/badfiles/badfiles.py#L148"><code>_high_compression</code> method</a></p>
+<h3 id="office-documents">Office Documents<a class="headerlink" href="#office-documents" title="Permanent link">&para;</a></h3>
+<p>Office Documents (docx, xlsx, etc) use the zip file specification as the underlying file structure. Therefore, all zip file rules are applied to office documents before ay further processing.</p>
+<h4 id="dde-injection">DDE Injection<a class="headerlink" href="#dde-injection" title="Permanent link">&para;</a></h4>
+<p>DDE (Dynamic Data Exchange) injection behaves almost identically to CSV injection. Their detection strategies, however, differ.</p>
+<p>After the file passes the zip file detection rules, it is safe to <a href="https://github.com/Jeffallan/badfiles/blob/a17263a5e6fd0312a01c17b33f364f86510105f0/badfiles/utils.py#L70">unzip</a>. When the file is unzipped we look for a folder called <code>ExternalLinks</code>. If that folder exists the file uses the DDE protocol should be considered unsafe. This detection measure is implemented in the <a href="https://github.com/Jeffallan/badfiles/blob/a17263a5e6fd0312a01c17b33f364f86510105f0/badfiles/utils.py#L52"><code>find_dde</code> method</a></p>
+<h3 id="tar-files">Tar Files<a class="headerlink" href="#tar-files" title="Permanent link">&para;</a></h3>
+<h4 id="files-with-absolute-paths">Files With Absolute Paths<a class="headerlink" href="#files-with-absolute-paths" title="Permanent link">&para;</a></h4>
+<p>If a tar file contains a file with an absolute path, if will overwrite the file in the absolute path if the user who un tars the file has the correct permissions.</p>
+<p>There are numerous targets like:</p>
 <ul>
-<li>Your operating system name and version.</li>
-<li>Any details about your local setup that might be helpful in troubleshooting.</li>
-<li>Detailed steps to reproduce the bug.</li>
+<li>/etc/passwd</li>
+<li>.bashrc</li>
+<li>.bash_aliases</li>
 </ul>
-<h4 id="fix-bugs">Fix Bugs<a class="headerlink" href="#fix-bugs" title="Permanent link">&para;</a></h4>
-<p>Look through the GitHub issues for bugs. Anything tagged with "bug" and "help
-wanted" is open to whoever wants to implement it.</p>
-<h4 id="implement-features">Implement Features<a class="headerlink" href="#implement-features" title="Permanent link">&para;</a></h4>
-<p>Look through the GitHub issues for features. Anything tagged with "enhancement"
-and "help wanted" is open to whoever wants to implement it.</p>
-<h4 id="write-documentation">Write Documentation<a class="headerlink" href="#write-documentation" title="Permanent link">&para;</a></h4>
-<p>badfiles could always use more documentation, whether as part of the
-official badfiles docs, in docstrings, or even on the web in blog posts,
-articles, and such.</p>
-<h4 id="submit-feedback">Submit Feedback<a class="headerlink" href="#submit-feedback" title="Permanent link">&para;</a></h4>
-<p>The best way to send feedback is to file an issue at https://github.com/jeffallan/badfiles/issues.</p>
-<p>If you are proposing a feature:</p>
-<ul>
-<li>Explain in detail how it would work.</li>
-<li>Keep the scope as narrow as possible, to make it easier to implement.</li>
-<li>Remember that this is a volunteer-driven project, and that contributions
-  are welcome.</li>
-</ul>
-<h3 id="get-started">Get Started!<a class="headerlink" href="#get-started" title="Permanent link">&para;</a></h3>
-<p>Ready to contribute? Here's how to set up <code>badfiles</code> for local development.</p>
-<ul>
-<li>Fork the <code>badfiles</code> repo on GitHub.</li>
-<li>Clone your fork locally</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>git clone git@github.com:your_name_here/badfiles.git
-</code></pre></div>
-</td></tr></table>
-<ul>
-<li>Ensure <a href="https://python-poetry.org/docs/">poetry</a> is installed.</li>
-<li>Install dependencies and start your virtualenv:</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>poetry install -E <span class="nb">test</span> -E doc -E dev
-</code></pre></div>
-</td></tr></table>
-<ul>
-<li>
-<p>Install <a href="./installation">Yara and Python magic</a></p>
-</li>
-<li>
-<p>Create a branch for local development:</p>
-</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>git checkout -b name-of-your-bugfix-or-feature
-</code></pre></div>
-</td></tr></table>
-<p>Now you can make your changes locally.</p>
-<ul>
-<li>When you're done making changes, check that your changes pass the
-   tests, including testing other Python versions, with tox:</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>tox
-</code></pre></div>
-</td></tr></table>
-<ul>
-<li>Commit your changes and push your branch to GitHub:</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>git add .
-git commit -m <span class="s2">&quot;Your detailed description of your changes.&quot;</span>
-git push origin name-of-your-bugfix-or-feature
-</code></pre></div>
-</td></tr></table>
-<ul>
-<li>Submit a pull request through the GitHub website.</li>
-</ul>
-<h3 id="pull-request-guidelines">Pull Request Guidelines<a class="headerlink" href="#pull-request-guidelines" title="Permanent link">&para;</a></h3>
-<p>Before you submit a pull request, check that it meets these guidelines:</p>
-<ol>
-<li>The pull request should include tests.</li>
-<li>If the pull request adds functionality, the docs should be updated. Put
-   your new functionality into a function with a docstring, and add the
-   feature to the list in README.md.</li>
-<li>The pull request should work for Python 3.6, 3.7, 3.8, 3.9 and for PyPy. Check
-   https://github.com/jeffallan/badfiles/actions
-   and make sure that the tests pass for all supported Python versions.</li>
-</ol>
-<h3 id="tips">Tips<a class="headerlink" href="#tips" title="Permanent link">&para;</a></h3>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code> pytest tests.test_badfiles
-</code></pre></div>
-</td></tr></table>
-<p>To run a subset of tests.</p>
-<h3 id="deploying">Deploying<a class="headerlink" href="#deploying" title="Permanent link">&para;</a></h3>
-<p>A reminder for the maintainers on how to deploy.
-Make sure all your changes are committed (including an entry in HISTORY.md).
-Then run:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>poetry patch <span class="c1"># possible: major / minor / patch</span>
-git push
-git push --tags
-</code></pre></div>
-</td></tr></table>
-<p>Github will then deploy to PyPI if tests pass.</p>
-<!-- END INCLUDE -->
+<p>This detection mechanism has yet to be implemented.</p>
                 
               
               
@@ -770,7 +805,7 @@ git push --tags
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../api/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../usage/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -779,19 +814,19 @@ git push --tags
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                modules
+                usage
               </div>
             </div>
           </a>
         
         
-          <a href="../history/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../api/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                history
+                modules
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

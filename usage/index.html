@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#usage" class="md-skip">
+        <a href="#quickstart" class="md-skip">
           Skip to content
         </a>
       
@@ -193,6 +193,18 @@
   <li class="md-tabs__item">
     <a href="./" class="md-tabs__link md-tabs__link--active">
       usage
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../detection_methods/" class="md-tabs__link">
+      detection methods
     </a>
   </li>
 
@@ -344,9 +356,43 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
+  <a href="#quickstart" class="md-nav__link">
+    Quickstart
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-yara-rules" class="md-nav__link">
+    Custom Yara Rules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-integration" class="md-nav__link">
+    Project Integration
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fast-api" class="md-nav__link">
+    Fast API
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#django" class="md-nav__link">
+    Django
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -354,6 +400,21 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../detection_methods/" class="md-nav__link">
+        detection methods
+      </a>
     </li>
   
 
@@ -426,9 +487,43 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
+  <a href="#quickstart" class="md-nav__link">
+    Quickstart
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-yara-rules" class="md-nav__link">
+    Custom Yara Rules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-integration" class="md-nav__link">
+    Project Integration
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fast-api" class="md-nav__link">
+    Fast API
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#django" class="md-nav__link">
+    Django
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -451,11 +546,116 @@
                 
                   <h1>usage</h1>
                 
-                <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<p>To use badfiles in a project</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    import badfiles
+                <h4 id="quickstart">Quickstart<a class="headerlink" href="#quickstart" title="Permanent link">&para;</a></h4>
+<p>The Badfile class provides one public method called <code>is_badfile</code> which analyzes a file.</p>
+<p>There is also a convenance method called <code>isolate_or_clear</code> to help the developer handle the file in question.</p>
+<p>Their usage is demonstrated below:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">badfiles.badfiles</span> <span class="kn">import</span> <span class="n">Badfiles</span><span class="p">,</span> <span class="n">isolate_or_clear</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">Badfile</span><span class="p">()</span>
+
+<span class="n">bad</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">is_badfile</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="n">file</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">returns a named tuple with a classification: (safe, unsafe, unknown, or not implemented)</span>
+<span class="sd">                            message: A message explaining the classification</span>
+<span class="sd">                            file: The name of the file in the is_badfile function</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">isolate_or_clear</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="n">file</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="n">bad</span><span class="p">,</span> <span class="n">iso_dir</span><span class="o">=</span><span class="n">iso_dir</span><span class="p">,</span> <span class="n">safe_dir</span><span class="o">=</span><span class="n">safe_dir</span><span class="p">,</span> <span class="n">safe</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;safe&quot;</span><span class="p">,])</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The safe parameter is a list of badfile classifications, returned from is_badfile(), that are deemed safe (defaults to [&quot;safe&quot;,]). If the classification in the msg parameter is in the safe list the file is moved to safe_dir otherwise it is moved to iso_dir.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 </code></pre></div>
 </td></tr></table>
+<h4 id="custom-yara-rules">Custom Yara Rules<a class="headerlink" href="#custom-yara-rules" title="Permanent link">&para;</a></h4>
+<p>A user may provide custom Yara detection rules upon class instantiation like so:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">badfiles.badfiles</span> <span class="kn">import</span> <span class="n">Badfiles</span><span class="p">,</span> <span class="n">isolate_or_clear</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">Badfile</span><span class="p">(</span><span class="n">zip_rules</span><span class="o">=</span><span class="s2">&quot;/path/to/rules&quot;</span><span class="p">,</span> <span class="n">tar_rules</span><span class="o">=</span><span class="s2">&quot;/path/to/rules&quot;</span><span class="p">,</span> <span class="n">csv_rules</span><span class="o">=</span><span class="s2">&quot;/path/to/rules&quot;</span><span class="p">)</span>
+
+<span class="n">bad</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">is_badfile</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="n">file</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<h4 id="project-integration">Project Integration<a class="headerlink" href="#project-integration" title="Permanent link">&para;</a></h4>
+<p>The aim of this library is to use it in larger projects and especially web applications. Here are a few ideas for how you can integrate <code>badfiles</code> into your current projects.</p>
+<h5 id="fast-api">Fast API<a class="headerlink" href="#fast-api" title="Permanent link">&para;</a></h5>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">File</span><span class="p">,</span> <span class="n">UploadFile</span>
+<span class="kn">from</span> <span class="nn">fastapi.responses</span> <span class="kn">import</span> <span class="n">JSONResponse</span>
+<span class="kn">from</span> <span class="nn">badfiles.badfiles</span> <span class="kn">import</span> <span class="n">Badfile</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Welcome to the badfiles demo&quot;</span><span class="p">}</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">post_file</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">UploadFile</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="o">...</span><span class="p">)):</span>
+    <span class="n">upload</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">&quot;uploads&quot;</span> <span class="o">/</span> <span class="n">f</span><span class="o">.</span><span class="n">filename</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">upload</span><span class="p">,</span> <span class="s2">&quot;wb+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fo</span><span class="p">:</span>
+        <span class="n">fo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">Badfile</span><span class="p">()</span>
+    <span class="n">bf</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">is_badfile</span><span class="p">(</span><span class="n">upload</span><span class="p">)</span>
+    <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">upload</span><span class="p">)</span> <span class="c1"># in real life you will not want to delete the file at this point</span>
+    <span class="k">if</span> <span class="n">bf</span><span class="o">.</span><span class="n">classification</span> <span class="o">==</span> <span class="s2">&quot;safe&quot;</span><span class="p">:</span>
+        <span class="c1"># handle safe files here</span>
+        <span class="k">return</span> <span class="n">JSONResponse</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+            <span class="n">content</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;File accepted: </span><span class="si">{</span><span class="n">bf</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">})</span>
+    <span class="c1"># handle unsafe files here</span>
+    <span class="k">return</span> <span class="n">JSONResponse</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">403</span><span class="p">,</span>
+        <span class="n">content</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;File rejected: </span><span class="si">{</span><span class="n">bf</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">})</span>
+</code></pre></div>
+</td></tr></table>
+<h5 id="django">Django<a class="headerlink" href="#django" title="Permanent link">&para;</a></h5>
+<p>//TODO</p>
                 
               
               
@@ -489,13 +689,13 @@
           </a>
         
         
-          <a href="../api/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../detection_methods/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                modules
+                detection methods
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

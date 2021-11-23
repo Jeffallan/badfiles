@@ -203,6 +203,18 @@
 
 
   <li class="md-tabs__item">
+    <a href="../detection_methods/" class="md-tabs__link">
+      detection methods
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
     <a href="../api/" class="md-tabs__link">
       modules
     </a>
@@ -333,26 +345,6 @@
     Installation
   </a>
   
-    <nav class="md-nav" aria-label="Installation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#stable-release" class="md-nav__link">
-    Stable release
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#from-source" class="md-nav__link">
-    From source
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -373,6 +365,21 @@
     <li class="md-nav__item">
       <a href="../usage/" class="md-nav__link">
         usage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../detection_methods/" class="md-nav__link">
+        detection methods
       </a>
     </li>
   
@@ -450,26 +457,6 @@
     Installation
   </a>
   
-    <nav class="md-nav" aria-label="Installation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#stable-release" class="md-nav__link">
-    Stable release
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#from-source" class="md-nav__link">
-    From source
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -491,31 +478,9 @@
                 
                   <h1>installation</h1>
                 
-                <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<h3 id="stable-release">Stable release<a class="headerlink" href="#stable-release" title="Permanent link">&para;</a></h3>
-<p>To install badfiles, run this command in your
-terminal:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">$ </span>pip install badfiles
-</code></pre></div>
-</td></tr></table>
-<p>This is the preferred method to install badfiles, as it will always install the most recent stable release.</p>
-<p>If you don't have <a href="https://pip.pypa.io">pip</a> installed, this <a href="http://docs.python-guide.org/en/latest/starting/installation/">Python installation guide</a>
-can guide you through the process.</p>
-<h3 id="from-source">From source<a class="headerlink" href="#from-source" title="Permanent link">&para;</a></h3>
-<p>The source for badfiles can be downloaded from
-the <a href="https://github.com/%7B%7B%20cookiecutter.github_username%20%7D%7D/%7B%7B%20cookiecutter.project_slug%20%7D%7D">Github repo</a>.</p>
-<p>You can either clone the public repository:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">$ </span>git clone git://github.com/jeffallan/badfiles
-</code></pre></div>
-</td></tr></table>
-<p>Or download the <a href="https://github.com/%7B%7B%20cookiecutter.github_username%20%7D%7D/%7B%7B%20cookiecutter.project_slug%20%7D%7D/tarball/master">tarball</a>:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">$ </span>curl -OJL https://github.com/jeffallan/badfiles/tarball/master
-</code></pre></div>
-</td></tr></table>
-<p>Once you have a copy of the source, you can install it with:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">$ </span>pip install .
-</code></pre></div>
-</td></tr></table>
+                <h4 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h4>
+<p>This package can be installed with <code>pip install badfiles</code>. The package also provides a convenance script called <code>badfiles</code> that runs a cli version of the detection engine. The <code>badfiles</code> command has an an additional dependency,<a href="https://github.com/chriskiehl/Gooey">Gooey</a>. If you wish to use the <code>badfiles</code> script please install the additional dependency via <code>pip install badfiles[gui]</code>.</p>
+<p>This project a Yara installation. Installation instructions can be found <a href="https://yara.readthedocs.io/en/stable/gettingstarted.html">here</a>. This project also relies on <a href="https://github.com/ahupp/python-magic">python-magic</a> which may require additional installation steps depending on your operating system.</p>
                 
               
               
