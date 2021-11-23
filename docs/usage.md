@@ -1,8 +1,8 @@
 ### Quickstart
 
-The Badfile class provides one public method called `is_badfile` which analyzes a file.
+The Badfile class provides one public method called `is_badfile` which analyzes a file according to the detection methods outlined [here](https://jeffallan.github.io/badfiles/detection_methods/).
 
-There is also a convenance method called `isolate_or_clear` to help the developer handle the file in question.
+There is also a convenance method called `isolate_or_clear` to handle the file in question.
 
 Their usage is demonstrated below:
 
@@ -17,18 +17,20 @@ bad = b.is_badfile(f=file)
 """
 returns a named tuple with a classification: (safe, unsafe, unknown, or not implemented)
                             message: A message explaining the classification
-                            file: The name of the file in the is_badfile function
+                            file: The name of the file being analyzed
 """
 
 isolate_or_clear(f=file, msg=bad, iso_dir=iso_dir, safe_dir=safe_dir, safe=["safe",])
 """
-The safe parameter is a list of badfile classifications, returned from is_badfile(), that are deemed safe (defaults to ["safe",]). If the classification in the msg parameter is in the safe list the file is moved to safe_dir otherwise it is moved to iso_dir.
+The safe parameter is a list of badfile classifications, returned from is_badfile(),
+that are deemed safe (defaults to ["safe",]). If the classification in the msg parameter
+is in the safe list the file is moved to safe_dir otherwise it is moved to iso_dir.
 """
 
 ```
 ### Custom Yara Rules
 
-A user may provide custom Yara detection rules upon class instantiation like so:
+One may provide custom Yara detection rules upon class instantiation like so:
 
 ```python
 
@@ -77,5 +79,9 @@ async def post_file(f: UploadFile = File(...)):
 ```
 
 #### Django
+
+//TODO
+
+#### AWS Lambda Function
 
 //TODO

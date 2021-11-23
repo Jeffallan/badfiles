@@ -32,7 +32,7 @@ A malicious file detection engine written with Python and Yara.
 
 ## Introduction
 
-At some point most applications need to accept files from a third party. Since we do not have absolute control over these files they present a serious threat vector.
+At some point most applications need to accept files from a third party. Since we do not have absolute control over these files they can present a serious threat vector.
 
 The aim of this project is to provide a flexible and expandable solution to triage these files so they can be handled accordingly.
 
@@ -85,11 +85,11 @@ Currently, this project focuses on detecting the following:
 
 
 ### Additional Features
-Please file an issue or a pull request especially if you have found or created malicious files that bypass these detection mechanisms. Please see the [contributing guidelines](./contributing) for more details
+Please file an issue or a pull request especially if you have found or created malicious files that bypass these detection mechanisms. Please see the [contributing guidelines](https://jeffallan.github.io/badfiles/contributing/) for more details.
 
-## [Getting Started](./installation)
+## [Getting Started](https://jeffallan.github.io/badfiles/installation/)
 
-## [Usage](./usage)
+## [Usage](https://jeffallan.github.io/badfiles/usage/)
 
 ## Credits
 
